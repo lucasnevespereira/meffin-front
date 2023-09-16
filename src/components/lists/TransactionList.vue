@@ -8,7 +8,7 @@
                 </div>
                 <div>
                     <span v-if="item.is_fixed" class="mr-4">Tous les {{ item.day_of_month }} du mois</span>
-                    <span v-else class="mr-4">Jusqu'au {{ formatDate(item.endDate) }}</span>
+                    <span v-else-if="item.endDate.length > 0" class="mr-4">Jusqu'au {{ formatDate(item.endDate) }}</span>
                     <span v-if="item.is_fixed" class="bg-blue-200 text-blue-700 py-1 px-3 rounded-full text-xs uppercase">Fixe</span>
                 </div>
                 <button @click="emit('removeItem', index)" class="btn btn-xs btn-error ml-4">X</button>

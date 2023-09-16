@@ -35,6 +35,22 @@
                 </div>
             </div>
 
+            <!-- Category Selection & Custom Addition -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <div>
+                    <label for="category" class="block text-sm font-medium text-gray-700">Catégorie:</label>
+                    <select id="category" v-model="newItem.category" class="mt-1 select select-bordered w-full">
+                        <option value="Aucune" selected>Aucune</option>
+                        <option v-for="category in categories" :key="category" :value="category">{{ category }}</option>
+                    </select>
+                </div>
+
+                <div v-if="newItem.category === 'Autre'">
+                    <label for="customCategory" class="block text-sm font-medium text-gray-700">Catégorie Personnalisée:</label>
+                    <input id="customCategory" v-model="newCustomCategory" placeholder="Enter catégorie personnalisée" class="mt-1 input input-bordered w-full" />
+                </div>
+            </div>
+
             <!-- Buttons -->
             <div class="flex space-x-4 mt-4">
                 <button @click="addItem" class="btn btn-primary">Valider</button>
@@ -51,26 +67,55 @@
 import { ref, defineProps, defineEmits, computed } from 'vue';
 
 interface Props {
-    modelValue: { amount: number, description: string, is_fixed: boolean, day_of_month?: number | string, endDate?: string }[];
+    modelValue: { amount: number, description: string, is_fixed: boolean, day_of_month?: number | string, endDate?: string, category?: string }[];
     type: "income" | "expense";
 }
+
+const expenseCategories = ref([
+    'Maison',
+    'Transports',
+    'Banque',
+    'Abonnements',
+    'Sorties',
+    'Divers',
+    'Autre'
+]);
+
+const incomeCategories = ref([
+    'Salaire',
+    'Cadeau',
+    'Freelance',
+    'Investissement',
+    'Autre'
+]);
+
+const newCustomCategory = ref('');
+
+const categories = computed(() => {
+    return type === 'expense' ? expenseCategories.value : incomeCategories.value;
+});
 
 const { modelValue, type } = defineProps<Props>();
 const emit = defineEmits();
 
 const adding = ref(false);
-const newItem = ref({ amount: 0, description: '', is_fixed: false, day_of_month: '', endDate: '' });
+const newItem = ref({ amount: 0, description: '', is_fixed: false, day_of_month: '', endDate: '', category: 'Aucune' });
 
 const startAdd = () => {
     adding.value = true;
 };
 
 const addItem = () => {
-    console.log(newItem.value)
+    if (newItem.value.category === 'Autre' && newCustomCategory.value) {
+        newItem.value.category = newCustomCategory.value;
+    } else if (newItem.value.category === 'Autre' && !newCustomCategory.value) {
+        newItem.value.category = 'Aucune';
+    }
     modelValue.push({ ...newItem.value });
     emit('update:modelValue', modelValue);
     adding.value = false;
-    newItem.value = { amount: 0, description: '', is_fixed: false, day_of_month: '', endDate: '' };
+    newItem.value = { amount: 0, description: '', is_fixed: false, day_of_month: '', endDate: '', category: 'Aucune' }; // reset with default category
+    newCustomCategory.value = ''; // reset the custom category field
 };
 
 const cancelAdd = () => {
