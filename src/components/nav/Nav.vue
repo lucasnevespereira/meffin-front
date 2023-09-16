@@ -2,7 +2,7 @@
     <div class="hidden lg:flex items-center">
         <!-- If user is not authenticated and not loading -->
         <div v-if="!isAuthenticated && !isLoading">
-            <button id="qsLoginBtn" class="btn btn-primary" @click.prevent="login">Login</button>
+            <button id="qsLoginBtn" class="btn btn-outline" @click.prevent="login">Login</button>
         </div>
         <!-- If user is authenticated -->
         <div v-if="isAuthenticated" class="dropdown dropdown-end">
