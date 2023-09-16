@@ -1,36 +1,35 @@
 <template>
-  <div class="container">
-    <div class="row align-items-center profile-header">
-      <div class="col-md-2 mb-3">
-        <img
-          :src="user?.picture"
-          alt="User's profile picture"
-          class="rounded-circle img-fluid profile-picture"
-        />
-      </div>
-      <div class="col-md text-center text-md-left">
-        <h2>{{ user?.name }}</h2>
-        <p class="lead text-muted">{{ user?.email }}</p>
-      </div>
-    </div>
+    <div class="container mx-auto">
+        <div class="flex items-center mb-6">
+            <div class="w-1/4 md:w-1/6">
+                <img
+                        :src="user?.picture"
+                        alt="User's profile picture"
+                        class="rounded-full md:w-3/4 mx-auto md:mx-0"
+                />
+            </div>
+            <div class="w-3/4 md:w-5/6 text-center md:text-left ml-4">
+                <h2 class="text-xl font-bold">{{ user?.name }}</h2>
+                <p class="text-gray-500">{{ user?.email }}</p>
+            </div>
+        </div>
 
-    <div class="row">
-      <highlightjs language="json" :code="JSON.stringify(user, null, 2)" />
+        <div class="row">
+            <highlightjs language="json" :code="JSON.stringify(user, null, 2)" />
+        </div>
     </div>
-  </div>
 </template>
 
 <script lang="ts">
 import { useAuth0 } from '@auth0/auth0-vue';
 
 export default {
-  name: "profile-view",
-  setup() {
-    const auth0 = useAuth0();
-    return {
-      user: auth0.user,
+    name: "profile-view",
+    setup() {
+        const auth0 = useAuth0();
+        return {
+            user: auth0.user,
+        }
     }
-  }
 };
 </script>
-

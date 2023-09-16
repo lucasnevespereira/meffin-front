@@ -1,6 +1,6 @@
 <template>
   <div>
-      <hero v-if="!isAuthenticated" />
+      <Landing v-if="!isAuthenticated" />
       <div v-else>
         <h1>Dashboard</h1>
       </div>
@@ -8,13 +8,13 @@
 </template>
 
 <script lang="ts">
-import Hero from "../components/Hero.vue";
+import Landing from "../components/Landing.vue";
 import {useAuth0} from "@auth0/auth0-vue";
 
 export default {
   name: "home-view",
   components: {
-    Hero,
+    Landing,
   },
     setup(){
       const auth0 = useAuth0();
@@ -25,9 +25,3 @@ export default {
     }
 };
 </script>
-
-<style lang="css" scoped>
-.next-steps .fa-link {
-    margin-right: 5px;
-}
-</style>
