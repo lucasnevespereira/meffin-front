@@ -30,6 +30,8 @@ import {useAuth0} from '@auth0/auth0-vue';
 import TransactionList from "../components/lists/TransactionList.vue";
 import TransactionForm from "../components/forms/TransactionForm.vue";
 
+import { useTransactionsStore } from '../store';
+
 
 export default {
     components: {
@@ -37,23 +39,32 @@ export default {
         TransactionList,
     },
     setup() {
+        const store = useTransactionsStore();
         const auth0 = useAuth0();
 
         const incomes = ref([]);
         const expenses = ref([]);
 
+        // const handleRemoveIncome = (index: number) => {
+        //     incomes.value.splice(index, 1);
+        // };
+        //
+        // const handleRemoveExpense = (index: number) => {
+        //     expenses.value.splice(index, 1);
+        // };
+
         const handleRemoveIncome = (index: number) => {
-            incomes.value.splice(index, 1);
+            store.incomes.splice(index, 1);
         };
 
         const handleRemoveExpense = (index: number) => {
-            expenses.value.splice(index, 1);
+            store.expenses.splice(index, 1);
         };
 
         return {
             user: auth0.user,
-            incomes,
-            expenses,
+            incomes: store.incomes,
+            expenses: store.expenses,
             handleRemoveIncome,
             handleRemoveExpense
         }
