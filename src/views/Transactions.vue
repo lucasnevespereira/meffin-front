@@ -42,17 +42,6 @@ export default {
         const store = useTransactionsStore();
         const auth0 = useAuth0();
 
-        const incomes = ref([]);
-        const expenses = ref([]);
-
-        // const handleRemoveIncome = (index: number) => {
-        //     incomes.value.splice(index, 1);
-        // };
-        //
-        // const handleRemoveExpense = (index: number) => {
-        //     expenses.value.splice(index, 1);
-        // };
-
         const handleRemoveIncome = (index: number) => {
             store.incomes.splice(index, 1);
         };

@@ -7,7 +7,8 @@
                     <span :class="itemColor" class="ml-4">{{ item.amount }} €</span>
                 </div>
                 <div>
-                    <span class="mr-4">{{ item.date }}</span>
+                    <span v-if="item.is_fixed" class="mr-4">Tous les {{ item.day_of_month }} du mois</span>
+                    <span v-else class="mr-4">Jusqu'au {{ formatDate(item.endDate) }}</span>
                     <span v-if="item.is_fixed" class="bg-blue-200 text-blue-700 py-1 px-3 rounded-full text-xs uppercase">Fixe</span>
                 </div>
                 <button @click="emit('removeItem', index)" class="btn btn-xs btn-error ml-4">X</button>
@@ -18,9 +19,10 @@
 
 <script setup lang="ts">
 import { defineProps, defineEmits, computed } from 'vue';
+import {formatDate} from "../../utils/formatDate";
 
 interface Props {
-    items: { amount: number, description: string, is_fixed: boolean, date: string }[];
+    items: { amount: number, description: string, is_fixed: boolean, endDate: string, day_of_month?: number }[];
     type: "income" | "expense";
 }
 
@@ -30,4 +32,6 @@ const emit = defineEmits(['removeItem']);
 const itemColor = computed(() => {
     return type === "income" ? "text-green-500" : "text-red-500";
 });
+
+
 </script>

@@ -4,7 +4,8 @@ interface Transaction {
     amount: number;
     description: string;
     is_fixed: boolean;
-    date: string;
+    day_of_month: number;
+    endDate: string;
 }
 
 export const useTransactionsStore = defineStore({

@@ -44,7 +44,7 @@ export default {
 
 <style>
 .avatar img {
-    max-width: 60%;
+    max-width: 50%;
 }
 
 .avatar:hover {
