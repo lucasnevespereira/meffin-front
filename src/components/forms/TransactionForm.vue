@@ -2,8 +2,8 @@
     <div>
         <div v-if="adding" class="space-y-4">
             <div class="flex space-x-4">
-                <input v-model="newItem.amount" placeholder="Montant" type="number" class="input input-bordered w-1/2" />
                 <input v-model="newItem.description" placeholder="Description" class="input input-bordered w-1/2" />
+                <input v-model="newItem.amount" placeholder="Montant" type="number" class="input input-bordered w-1/2" />
             </div>
             <div class="flex space-x-4">
                 <input type="date" v-model="newItem.date" placeholder="Date" class="input input-bordered w-1/2" />
