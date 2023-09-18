@@ -19,9 +19,10 @@
             <!-- Fixed Entry Checkbox & Day of Month or Stop Date -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                 <div v-if="newItem.is_fixed || onlyThisMonth">
-                    <label for="dayOfMonth" class="block text-sm font-medium text-gray-700">Tous les (jour du
-                        mois):</label>
-                    <select id="dayOfMonth" v-model.number="newItem.day_of_month" class="mt-1 select select-bordered w-full">
+                    <label for="dayOfMonth" class="block text-sm font-medium text-gray-700"> Jour du
+                        mois:</label>
+                    <select id="dayOfMonth" v-model.number="newItem.day_of_month"
+                            class="mt-1 select select-bordered w-full">
                         <option disabled="disabled" selected="selected" value="">Sélectionnez un jour</option>
                         <option v-for="day in 31" :key="day" :value="day">{{ day }}</option>
                     </select>
@@ -46,7 +47,7 @@
                         <label for="onlyThisMonth" class="block text-sm font-medium text-gray-700">Seulement ce
                             mois-ci:</label>
                         <input id="onlyThisMonth" type="checkbox" v-model="onlyThisMonth"
-                               class="mt-2 checkbox checkbox-info" @change="handleOnlyThisMonthChange"/>
+                               class="mt-2 checkbox checkbox-primary" @change="handleOnlyThisMonthChange"/>
                     </div>
                 </div>
 

@@ -7,7 +7,7 @@
                 <div class="text-center mb-6">
                     <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold">{{ currentMonth }}</h1>
                 </div>
-                <MonthlyBill v-if="incomes.length > 0 || expenses.length > 0" :incomes="incomes" :expenses="expenses" :solde="solde"/>
+                <MonthlyBill v-if="incomes && incomes.length > 0 || expenses && expenses.length > 0" :incomes="incomes" :expenses="expenses" :solde="solde"/>
                 <div v-else class="flex flex-col items-center space-y-4">
                     <p class="text-gray-600">Pas de transactions ce mois-ci.</p>
                     <router-link to="/transactions" class="btn btn-primary">Ajouter des transactions</router-link>
