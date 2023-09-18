@@ -4,7 +4,7 @@
             <div class="container mx-auto flex justify-between items-center">
                 <Logo />
                 <MobileNavButton @toggle-menu="mobileMenuOpen = !mobileMenuOpen" />
-                <MobileNav :isOpen="mobileMenuOpen" :isAuthenticated="isAuthenticated" :isLoading="isLoading" :user="user" :login="login" :logout="logout" />
+                <MobileNav :isOpen="mobileMenuOpen" :isAuthenticated="isAuthenticated" :isLoading="isLoading" :user="user" :login="login" :logout="logout"  @closeMenu="mobileMenuOpen = false"/>
                 <Nav :isAuthenticated="isAuthenticated" :isLoading="isLoading" :user="user" :login="login" :logout="logout" />
             </div>
         </nav>
@@ -18,6 +18,7 @@ import Logo from './nav/Logo.vue';
 import MobileNavButton from './nav/MobileNavButton.vue';
 import MobileNav from './nav/MobileNav.vue';
 import Nav from './nav/Nav.vue';
+import {onBeforeRouteLeave} from "vue-router";
 
 const mobileMenuOpen = ref(false);
 
@@ -31,6 +32,11 @@ export default {
     },
     setup() {
         const auth0 = useAuth0();
+
+        onBeforeRouteLeave(() => {
+            mobileMenuOpen.value = false;
+            return true;  // this is important; it confirms the navigation action
+        });
 
         return {
             isAuthenticated: auth0.isAuthenticated,

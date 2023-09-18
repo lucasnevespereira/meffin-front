@@ -8,9 +8,6 @@
         <p class="text-center text-lg leading-relaxed max-w-md">
             Notez vos entrées d'argent et vos dépenses en quelques clics. Meffin vous offre une vue claire de votre budget mensuel.
         </p>
-        <button class="btn btn-secondary">
-            Commencer
-        </button>
     </div>
 </template>
 
@@ -19,7 +16,3 @@ export default {
     name: "Landing"
 };
 </script>
-
-<style>
-/* Vous pouvez ajouter des styles personnalisés ici si nécessaire, mais daisyUI devrait gérer la plupart de vos besoins. */
-</style>
