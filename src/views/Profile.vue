@@ -1,7 +1,6 @@
 <template>
     <div class="container mx-auto p-8">
 
-        <!-- Profile Header -->
         <div class="flex flex-col md:flex-row items-center mb-10">
             <div class="w-full md:w-1/4 mb-4 md:mb-0">
                 <img

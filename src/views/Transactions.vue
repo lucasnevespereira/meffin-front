@@ -7,30 +7,31 @@
 
         <div class="p-6 bg-white rounded-xl shadow-md space-y-6">
             <h2 class="text-2xl font-bold">Mes entrées</h2>
-            <TransactionList :items="incomes" type="income" @removeItem="handleRemoveIncome"/>
+            <TransactionList :items="incomes" type="income" @removeItem="handleRemoveTransaction"/>
             <TransactionForm :modelValue="incomes" type="income"
-                             @update:modelValue="updatedIncomes => incomes = updatedIncomes"/>
+                             @update:modelValue="updatedIncomes => incomes = updatedIncomes"
+                             @addTransaction="handleAddTransaction"/>
         </div>
 
-        <!-- Separator -->
         <div class="my-6 border-b-2"></div>
 
         <div class="p-6 bg-white rounded-xl shadow-md space-y-6">
             <h2 class="text-2xl font-bold mt-6">Mes dépenses</h2>
-            <TransactionList :items="expenses" type="expense" @removeItem="handleRemoveExpense"></TransactionList>
+            <TransactionList :items="expenses" type="expense" @removeItem="handleRemoveTransaction"></TransactionList>
             <TransactionForm :modelValue="expenses" type="expense"
-                             @update:modelValue="updatedExpenses => expenses = updatedExpenses"/>
+                             @update:modelValue="updatedExpenses => expenses = updatedExpenses"
+                             @addTransaction="handleAddTransaction"/>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import {ref} from 'vue';
-import {useAuth0} from '@auth0/auth0-vue';
-import TransactionList from "../components/lists/TransactionList.vue";
-import TransactionForm from "../components/forms/TransactionForm.vue";
+import TransactionList from "@/components/lists/TransactionList.vue";
+import TransactionForm from "@/components/forms/TransactionForm.vue";
 
-import { useTransactionsStore } from '../store';
+import {useTransactionsStore} from '@/store/transactions';
+import {useAuth0} from "@auth0/auth0-vue";
+import {onMounted} from "vue";
 
 
 export default {
@@ -42,20 +43,24 @@ export default {
         const store = useTransactionsStore();
         const auth0 = useAuth0();
 
-        const handleRemoveIncome = (index: number) => {
-            store.incomes.splice(index, 1);
+        const handleAddTransaction = (type: string, transaction: Transaction) => {
+            const userId = auth0.user.value?.sub;
+            if (userId) {
+                store.addTransaction({userId, ...transaction});
+            }
         };
 
-        const handleRemoveExpense = (index: number) => {
-            store.expenses.splice(index, 1);
+        const handleRemoveTransaction = (transactionId: string) => {
+            store.removeTransaction(transactionId);
         };
+
 
         return {
             user: auth0.user,
             incomes: store.incomes,
             expenses: store.expenses,
-            handleRemoveIncome,
-            handleRemoveExpense
+            handleAddTransaction,
+            handleRemoveTransaction
         }
     }
 };

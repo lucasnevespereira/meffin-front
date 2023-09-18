@@ -1,25 +1,30 @@
 <template>
     <div class="container mx-auto p-4 space-y-8">
-        <Landing v-if="!isAuthenticated"/>
+        <Landing v-if="!isAuthenticated && !isFetching"/>
         <div v-else>
-            <div class="text-center mb-6">
-                <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold">{{ currentMonth }}</h1>
+            <Loader v-if="isFetching" />
+            <div v-else>
+                <div class="text-center mb-6">
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold">{{ currentMonth }}</h1>
+                </div>
+                <MonthlyBill :incomes="incomes" :expenses="expenses" :solde="solde"/>
             </div>
-            <MonthlyBill :incomes="incomes" :expenses="expenses" :solde="solde" />
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import Landing from "../components/Landing.vue";
-import { useAuth0 } from "@auth0/auth0-vue";
-import { useTransactionsStore } from "../store";
+import Landing from "@/components/Landing.vue";
+import {useAuth0} from "@auth0/auth0-vue";
+import {useTransactionsStore} from "@/store/transactions";
 import {computed} from "vue";
-import MonthlyBill from "../components/MonthlyBill.vue";
+import MonthlyBill from "@/components/MonthlyBill.vue";
+import Loader from "@/components/Loader.vue";
 
 export default {
     name: "home-view",
     components: {
+        Loader,
         MonthlyBill,
         Landing,
     },
@@ -32,17 +37,20 @@ export default {
         ];
         const currentDate = new Date();
         const currentMonth = monthNames[currentDate.getMonth()] + ' ' + currentDate.getFullYear();
-
+        const isFetching = computed(() => store.isFetching)
+        const incomes = computed(() =>  store.incomes)
+        const expenses = computed(() =>  store.expenses)
         const solde = computed(() => {
-            const totalIncome = store.incomes.reduce((sum, i) => sum + i.amount, 0);
-            const totalExpense = store.expenses.reduce((sum, e) => sum + e.amount, 0);
+            const totalIncome = store.incomes ? store.incomes.reduce((sum, i) => sum + i.amount, 0) : 0;
+            const totalExpense = store.expenses ? store.expenses.reduce((sum, e) => sum + e.amount, 0) : 0;
             return totalIncome - totalExpense;
         });
-
         return {
-            incomes: store.incomes,
-            expenses: store.expenses,
+            incomes: incomes,
+            expenses: expenses,
+            isFetching: isFetching,
             isAuthenticated: auth0.isAuthenticated,
+            user: auth0.user,
             currentMonth,
             solde
         };

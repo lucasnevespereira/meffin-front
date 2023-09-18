@@ -83,10 +83,17 @@
 
 
 <script setup lang="ts">
-import {ref, defineProps, defineEmits, computed} from 'vue';
+import {ref, defineProps, computed} from 'vue';
+import {getLastDayOfThisMonth} from "@/utils/date";
+import {useTransactionsStore} from "@/store/transactions";
+import {useAuth0} from "@auth0/auth0-vue";
+
+const store = useTransactionsStore();
+const auth0 = useAuth0();
 
 interface Props {
     modelValue: {
+        type: string,
         amount: number,
         description: string,
         is_fixed: boolean,
@@ -110,7 +117,7 @@ const expenseCategories = ref([
 ]);
 
 const incomeCategories = ref([
-    'Salaire',
+    'Travail',
     'Cadeau',
     'Freelance',
     'Investissement',
@@ -123,13 +130,11 @@ const categories = computed(() => {
     return type === 'expense' ? expenseCategories.value : incomeCategories.value;
 });
 
-const {modelValue, type} = defineProps<Props>();
-const emit = defineEmits();
+const {type} = defineProps<Props>();
 
 const handleOnlyThisMonthChange = () => {
     if (onlyThisMonth.value) {
-        const today = new Date();
-        const lastDayOfThisMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+        const lastDayOfThisMonth = getLastDayOfThisMonth();
         newItem.value.endDate = lastDayOfThisMonth.toISOString().split('T')[0];
     } else {
         newItem.value.endDate = ''; // reset the end date if unchecked
@@ -137,11 +142,24 @@ const handleOnlyThisMonthChange = () => {
 };
 
 const adding = ref(false);
-const newItem = ref({amount: 0, description: '', is_fixed: false, day_of_month: '', endDate: '', category: 'Aucune'});
+const newItem = ref({type: type, amount: 0, description: '', is_fixed: false, day_of_month: '', endDate: '', category: 'Aucune'});
 
 const startAdd = () => {
     adding.value = true;
 };
+
+const resetNewItem = () => {
+    newItem.value = {
+        type: type,
+        amount: 0,
+        description: '',
+        is_fixed: false,
+        day_of_month: '',
+        endDate: '',
+        category: 'Aucune'
+    };
+    newCustomCategory.value = '';
+}
 
 const addItem = () => {
     if (newItem.value.category === 'Autre' && newCustomCategory.value) {
@@ -149,12 +167,22 @@ const addItem = () => {
     } else if (newItem.value.category === 'Autre' && !newCustomCategory.value) {
         newItem.value.category = 'Aucune';
     }
-    modelValue.push({...newItem.value});
-    emit('update:modelValue', modelValue);
+
+    const userId = auth0.user.value?.sub as string;
+    const newTransaction: CreateTransaction = {
+        userId,
+        type: newItem.value.type,
+        amount: newItem.value.amount,
+        description: newItem.value.description,
+        is_fixed: newItem.value.is_fixed,
+        day_of_month: parseInt(newItem.value.day_of_month),
+        endDate:  newItem.value.endDate,
+    }
+    store.addTransaction(newTransaction);
     adding.value = false;
-    newItem.value = {amount: 0, description: '', is_fixed: false, day_of_month: '', endDate: '', category: 'Aucune'}; // reset with default category
-    newCustomCategory.value = ''; // reset the custom category field
+    resetNewItem();
 };
+
 
 const cancelAdd = () => {
     adding.value = false;
