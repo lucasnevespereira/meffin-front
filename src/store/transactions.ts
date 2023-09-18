@@ -27,7 +27,7 @@ export const useTransactionsStore = defineStore({
                 }
             } catch (error) {
                 this.error = "Failed to add transaction.";
-                console.error(this.error);
+                console.error(error);
             } finally {
                 this.isFetching = false
             }

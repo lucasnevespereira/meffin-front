@@ -18,7 +18,7 @@
 
             <!-- Fixed Entry Checkbox & Day of Month or Stop Date -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                <div v-if="newItem.is_fixed">
+                <div v-if="newItem.is_fixed || onlyThisMonth">
                     <label for="dayOfMonth" class="block text-sm font-medium text-gray-700">Tous les (jour du
                         mois):</label>
                     <select id="dayOfMonth" v-model="newItem.day_of_month" class="mt-1 select select-bordered w-full">
@@ -41,6 +41,7 @@
                         <input id="isFixed" type="checkbox" v-model="newItem.is_fixed"
                                class="mt-2 checkbox checkbox-primary"/>
                     </div>
+
                     <div>
                         <label for="onlyThisMonth" class="block text-sm font-medium text-gray-700">Seulement ce
                             mois-ci:</label>
@@ -142,7 +143,15 @@ const handleOnlyThisMonthChange = () => {
 };
 
 const adding = ref(false);
-const newItem = ref({type: type, amount: 0, description: '', is_fixed: false, day_of_month: '', endDate: '', category: 'Aucune'});
+const newItem = ref({
+    type: type,
+    amount: 0,
+    description: '',
+    is_fixed: false,
+    day_of_month: '',
+    endDate: '',
+    category: 'Aucune'
+});
 
 const startAdd = () => {
     adding.value = true;
@@ -175,9 +184,10 @@ const addItem = () => {
         amount: newItem.value.amount,
         description: newItem.value.description,
         is_fixed: newItem.value.is_fixed,
-        day_of_month: parseInt(newItem.value.day_of_month),
-        endDate:  newItem.value.endDate,
+        day_of_month: newItem.value.day_of_month.length > 0 ? parseInt(newItem.value.day_of_month) : 0,
+        endDate: newItem.value.endDate,
     }
+    console.log("new transaction", newTransaction)
     store.addTransaction(newTransaction);
     adding.value = false;
     resetNewItem();

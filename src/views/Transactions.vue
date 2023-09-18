@@ -5,6 +5,8 @@
             <p class="text-xl font-medium">Bonjour, {{ user.nickname }}</p>
         </div>
 
+        <Loader v-if="isFetching" />
+
         <div class="p-6 bg-white rounded-xl shadow-md space-y-6">
             <h2 class="text-2xl font-bold">Mes entrées</h2>
             <TransactionList :items="incomes" type="income" @removeItem="handleRemoveTransaction"/>
@@ -31,11 +33,13 @@ import TransactionForm from "@/components/forms/TransactionForm.vue";
 
 import {useTransactionsStore} from '@/store/transactions';
 import {useAuth0} from "@auth0/auth0-vue";
-import {onMounted} from "vue";
+import {computed} from "vue";
+import Loader from "@/components/Loader.vue";
 
 
 export default {
     components: {
+        Loader,
         TransactionForm,
         TransactionList,
     },
@@ -53,12 +57,15 @@ export default {
         const handleRemoveTransaction = (transactionId: string) => {
             store.removeTransaction(transactionId);
         };
-
+        const incomes = computed(() => store.incomes)
+        const expenses = computed(() => store.expenses)
+        const isFetching = computed(() => store.isFetching)
 
         return {
             user: auth0.user,
-            incomes: store.incomes,
-            expenses: store.expenses,
+            incomes: incomes,
+            expenses: expenses,
+            isFetching: isFetching,
             handleAddTransaction,
             handleRemoveTransaction
         }
