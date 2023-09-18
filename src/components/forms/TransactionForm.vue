@@ -21,7 +21,7 @@
                 <div v-if="newItem.is_fixed || onlyThisMonth">
                     <label for="dayOfMonth" class="block text-sm font-medium text-gray-700">Tous les (jour du
                         mois):</label>
-                    <select id="dayOfMonth" v-model="newItem.day_of_month" class="mt-1 select select-bordered w-full">
+                    <select id="dayOfMonth" v-model.number="newItem.day_of_month" class="mt-1 select select-bordered w-full">
                         <option disabled="disabled" selected="selected" value="">Sélectionnez un jour</option>
                         <option v-for="day in 31" :key="day" :value="day">{{ day }}</option>
                     </select>
@@ -148,7 +148,7 @@ const newItem = ref({
     amount: 0,
     description: '',
     is_fixed: false,
-    day_of_month: '',
+    day_of_month: 0,
     endDate: '',
     category: 'Aucune'
 });
@@ -163,7 +163,7 @@ const resetNewItem = () => {
         amount: 0,
         description: '',
         is_fixed: false,
-        day_of_month: '',
+        day_of_month: 0,
         endDate: '',
         category: 'Aucune'
     };
@@ -184,7 +184,7 @@ const addItem = () => {
         amount: newItem.value.amount,
         description: newItem.value.description,
         is_fixed: newItem.value.is_fixed,
-        day_of_month: newItem.value.day_of_month.length > 0 ? parseInt(newItem.value.day_of_month) : 0,
+        day_of_month: newItem.value.day_of_month,
         endDate: newItem.value.endDate,
     }
     console.log("new transaction", newTransaction)

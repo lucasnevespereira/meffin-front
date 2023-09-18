@@ -5,11 +5,13 @@
             <li v-for="(item, index) in items" :key="index" class="flex justify-between items-center">
                 <span>{{ item.description }}</span>
                 <div class="flex items-center space-x-2">
-                    <span v-if="item.is_fixed" class="text-sm bg-blue-100 text-blue-600 px-2 py-1 rounded">Le {{ item.day_of_month }}</span>
-                    <span v-else-if="isLastDayOfThisMonth(item.endDate)" class="text-sm bg-yellow-100 text-yellow-600 px-2 py-1 rounded">Seulement ce mois</span>
-                    <span v-else class="text-sm bg-yellow-100 text-yellow-600 px-2 py-1 rounded">Jusqu'au {{formatDate(item.endDate)}}</span>
+                    <span v-if="item.is_fixed && item.day_of_month > 0" class="text-sm bg-blue-100 text-blue-600 px-2 py-1 rounded">Le <b>{{ item.day_of_month }} </b> du mois</span>
+                    <span v-else-if="!item.is_fixed && item.day_of_month > 0" class="text-sm bg-yellow-100 text-yellow-600 px-2 py-1 rounded">Seulement le <b>{{
+                            item.day_of_month
+                        }} </b> ce mois</span>
+                    <span v-else-if="item.endDate.length > 0" class="text-sm bg-yellow-100 text-yellow-600 px-2 py-1 rounded">Jusqu'au {{formatDate(item.endDate)}}</span>
 
-                    <span :class="amountColor" class="font-semibold">{{ item.amount }}€</span>
+                    <span :class="amountColor" class="font-bold">{{ item.amount }}€</span>
                 </div>
             </li>
         </ul>
@@ -18,7 +20,7 @@
 
 <script setup>
 import { computed, defineProps } from 'vue';
-import { formatDate, isLastDayOfThisMonth } from "@/utils/date";
+import { formatDate } from "@/utils/date";
 
 const props = defineProps({
     title: String,

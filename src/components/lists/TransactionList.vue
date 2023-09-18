@@ -7,9 +7,11 @@
                     <span :class="itemColor" class="ml-4">{{ item.amount }} €</span>
                 </div>
                 <div>
-                    <span v-if="item.is_fixed" class="mr-4">Tous les {{ item.day_of_month }} du mois</span>
-                    <span v-else-if="isLastDayOfThisMonth(item.endDate)" class="mr-4">Seulement ce mois</span>
-                    <span v-else class="mr-4">Jusqu'au {{ formatDate(item.endDate) }}</span>
+                    <span v-if="item.is_fixed && item.day_of_month > 0" class="mr-4">Tous les <b>{{ item.day_of_month }} </b> du mois</span>
+                    <span v-else-if="item.day_of_month > 0">Seulement le <b>{{ item.day_of_month }}</b> ce mois</span>
+                    <span v-else-if="!item.is_fixed && item.endDate.length > 0" class="mr-4">Jusqu'au {{
+                        formatDate(item.endDate)
+                        }}</span>
                     <span v-if="item.is_fixed"
                           class="bg-blue-200 text-blue-700 py-1 px-3 rounded-full text-xs uppercase">Fixe</span>
                 </div>
