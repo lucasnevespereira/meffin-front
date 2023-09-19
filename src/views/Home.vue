@@ -2,12 +2,13 @@
     <div class="container mx-auto p-4 space-y-8">
         <Landing v-if="!isAuthenticated && !isFetching"/>
         <div v-else>
-            <Loader v-if="isFetching" />
+            <Loader v-if="isFetching"/>
             <div v-else>
                 <div class="text-center mb-6">
                     <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold">{{ currentMonth }}</h1>
                 </div>
-                <MonthlyBill v-if="incomes && incomes.length > 0 || expenses && expenses.length > 0" :incomes="incomes" :expenses="expenses" :solde="solde"/>
+                <MonthlyBill v-if="incomes && incomes.length > 0 || expenses && expenses.length > 0" :incomes="incomes"
+                             :expenses="expenses" :solde="solde"/>
                 <div v-else class="flex flex-col items-center space-y-4">
                     <p class="text-gray-600">Pas de transactions ce mois-ci.</p>
                     <router-link to="/transactions" class="btn btn-primary">Ajouter des transactions</router-link>
@@ -42,13 +43,15 @@ export default {
         const currentDate = new Date();
         const currentMonth = monthNames[currentDate.getMonth()] + ' ' + currentDate.getFullYear();
         const isFetching = computed(() => store.isFetching)
-        const incomes = computed(() =>  store.incomes)
-        const expenses = computed(() =>  store.expenses)
+        const incomes = computed(() => store.incomes)
+        const expenses = computed(() => store.expenses)
         const solde = computed(() => {
             const totalIncome = store.incomes ? store.incomes.reduce((sum, i) => sum + i.amount, 0) : 0;
             const totalExpense = store.expenses ? store.expenses.reduce((sum, e) => sum + e.amount, 0) : 0;
-            return totalIncome - totalExpense;
+            const balance = totalIncome - totalExpense;
+            return balance.toFixed(2);
         });
+
         return {
             incomes: incomes,
             expenses: expenses,
