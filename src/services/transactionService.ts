@@ -8,7 +8,6 @@ export async function fetchUserTransactions(userId: string) {
 }
 
 export async function createTransaction(transaction: CreateTransaction) {
-    console.log("create", transaction)
     const url = `${baseUrl}/transactions`;
     return await axios.post(url, transaction);
 }
