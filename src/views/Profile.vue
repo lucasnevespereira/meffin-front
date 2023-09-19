@@ -30,9 +30,13 @@
             </div>
         </div>
 
-        <button @click="showDeleteModal = true" class="btn btn-secondary flex items-center space-x-2 mt-4">
-            <span>Supprimer le compte</span>
-        </button>
+        <div class="w-full">
+            <button @click="showDeleteModal = true"
+                    class="btn btn-secondary mx-auto lg:mx-0 flex items-center space-x-2 mt-4">
+                <span>Supprimer le compte</span>
+            </button>
+        </div>
+
 
         <Loader class="mt-2" v-if="isLoading"/>
         <error class="mt-2" v-if="errorMsg.length > 0" :message="errorMsg" @dismiss="errorMsg = ''"/>
