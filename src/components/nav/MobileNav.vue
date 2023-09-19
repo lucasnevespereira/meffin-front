@@ -10,21 +10,28 @@
             </div>
             <ul class="space-y-4 px-4">
                 <li class="flex items-center p-2 hover:bg-base-200 rounded">
-                    <font-awesome-icon icon="user" class="mr-3"/>
-                    <router-link to="/profile" class="hover:text-primary" @click.native="$emit('closeMenu')">Mon Profil</router-link>
+                    <router-link to="/profile" class="hover:text-primary flex items-center w-full" @click.native="$emit('closeMenu')">
+                        <font-awesome-icon icon="user" class="mr-3"/>
+                        Mon Profil
+                    </router-link>
                 </li>
                 <li class="flex items-center p-2 hover:bg-base-200 rounded">
-                    <font-awesome-icon icon="wallet" class="mr-3"/>
-                    <router-link to="/transactions" class="hover:text-primary" @click.native="$emit('closeMenu')">Transactions</router-link>
+                    <router-link to="/transactions" class="hover:text-primary flex items-center w-full" @click.native="$emit('closeMenu')">
+                        <font-awesome-icon icon="wallet" class="mr-3"/>
+                        Transactions
+                    </router-link>
                 </li>
                 <li class="flex items-center p-2 hover:bg-base-200 rounded">
-                    <font-awesome-icon icon="power-off" class="mr-3"/>
-                    <a id="qsLogoutBtn" href="#" class="hover:text-primary" @click.prevent="logout">Se Déconnecter</a>
+                    <a id="qsLogoutBtn" href="#" class="hover:text-primary flex items-center w-full" @click.prevent="logout">
+                        <font-awesome-icon icon="power-off" class="mr-3"/>
+                        Se Déconnecter
+                    </a>
                 </li>
             </ul>
         </div>
     </div>
 </template>
+
 <script>
 export default {
     props: {

@@ -5,39 +5,14 @@ module.exports = {
         "./src/**/*.{vue,js,ts,jsx,tsx}",
     ],
     theme: {
-        extend: {},
+        extend: {
+            fontFamily: {
+                'balsamiq': ['Balsamiq Sans', 'sans'],
+            },
+        },
     },
     daisyui: {
         themes: ["light", "dark", "cupcake", "wireframe",
-            "light",
-            "dark",
-            "cupcake",
-            "bumblebee",
-            "emerald",
-            "corporate",
-            "synthwave",
-            "retro",
-            "cyberpunk",
-            "valentine",
-            "halloween",
-            "garden",
-            "forest",
-            "aqua",
-            "lofi",
-            "pastel",
-            "fantasy",
-            "wireframe",
-            "black",
-            "luxury",
-            "dracula",
-            "cmyk",
-            "autumn",
-            "business",
-            "acid",
-            "lemonade",
-            "night",
-            "coffee",
-            "winter",
             {
                 custom: {
                     "primary": "#8c76e0",
@@ -52,6 +27,6 @@ module.exports = {
                 },
             }],
     },
-    plugins: [require("daisyui")],
+    plugins: [require("@tailwindcss/typography"), require("daisyui")],
 }
 

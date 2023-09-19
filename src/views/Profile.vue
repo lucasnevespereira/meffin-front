@@ -16,7 +16,6 @@
             </div>
         </div>
 
-        <!-- DaisyUI Modal for confirmation -->
         <div v-if="showDeleteModal" class="fixed inset-0 flex items-center justify-center z-50">
             <div class="modal modal-open">
                 <div class="modal-box">

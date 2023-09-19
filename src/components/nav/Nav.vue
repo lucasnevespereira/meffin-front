@@ -4,8 +4,8 @@
             <button id="qsLoginBtn" class="btn btn-outline" @click.prevent="login">Se Connecter</button>
         </div>
         <div v-if="isAuthenticated" class="dropdown dropdown-end">
-            <div tabindex="0" class="avatar" @click="toggleDropdown">
-                <img :src="user.picture" alt="User's profile picture" class="rounded-full w-12">
+            <div tabindex="0" class="avatar flex" @click="toggleDropdown">
+                <img :src="user.picture" alt="User's profile picture" class="rounded-full w-10">
             </div>
             <ul v-if="isDropdownOpen" tabindex="0" class="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52"
                 ref="dropdownContent">
@@ -64,7 +64,7 @@ export default {
 
 <style>
 .avatar img {
-    max-width: 50%;
+    max-width: 40%;
 }
 
 .avatar:hover {
