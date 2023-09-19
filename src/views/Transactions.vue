@@ -52,12 +52,16 @@ export default {
 
         const sortedIncomes = computed(() => {
             return incomes.value.slice().sort((a, b) => {
+                if (a.day_of_month === 0) return 1;
+                if (b.day_of_month === 0) return -1;
                 return a.day_of_month - b.day_of_month;
             });
         });
 
         const sortedExpenses = computed(() => {
             return expenses.value.slice().sort((a, b) => {
+                if (a.day_of_month === 0) return 1;
+                if (b.day_of_month === 0) return -1;
                 return a.day_of_month - b.day_of_month;
             });
         });

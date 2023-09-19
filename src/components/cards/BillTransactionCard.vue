@@ -34,7 +34,8 @@ const amountColor = computed(() => {
 
 const sortedItems = computed(() => {
     return props.items.slice().sort((a, b) => {
-        // Sort based on the value of day_of_month
+        if (a.day_of_month === 0) return 1;
+        if (b.day_of_month === 0) return -1;
         return a.day_of_month - b.day_of_month;
     });
 });
