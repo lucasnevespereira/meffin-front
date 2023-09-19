@@ -1,0 +1,27 @@
+{
+  "background_color": "#ffffff",
+  "description": "Meffin - Votre assistant financier simplifié.",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Meffin",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "Meffin",
+  "start_url": "/",
+  "theme_color": "#ffffff",
+  "categories": [],
+  "screenshots": [],
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "/logo.svg"
+    }
+  ],
+  "shortcuts": [],
+  "id": "meffin-app",
+  "lang": "fr"
+}
