@@ -5,7 +5,7 @@
             <li v-for="(item, index) in items" :key="index" class="flex justify-between items-center">
                 <span>{{ item.description }}</span>
                 <div class="flex items-center space-x-2">
-                    <span v-if="item.is_fixed && item.day_of_month > 0" class="text-sm bg-blue-100 text-blue-600 px-2 py-1 rounded"><b>{{ item.day_of_month }} </b></span>
+                    <span v-if="item.is_fixed && item.day_of_month > 0" class="text-sm bg-blue-100 text-blue-600 px-2 py-1 rounded"><b>{{ item.day_of_month }}</b></span>
                     <span v-else-if="!item.is_fixed && item.day_of_month > 0" class="text-sm bg-yellow-100 text-yellow-600 px-2 py-1 rounded"><b>{{
                             item.day_of_month
                         }}</b></span>
