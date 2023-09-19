@@ -6,6 +6,7 @@ interface Transaction {
     is_fixed: boolean;
     day_of_month: number;
     endDate: string;
+    category: string;
 }
 
 interface CreateTransaction {
@@ -16,4 +17,5 @@ interface CreateTransaction {
     is_fixed: boolean;
     day_of_month: number;
     endDate: string;
+    category: string;
 }

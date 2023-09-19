@@ -112,6 +112,7 @@ const expenseCategories = ref([
     'Maison',
     'Transports',
     'Banque',
+    'Assurance',
     'Abonnements',
     'Sorties',
     'Divers',
@@ -187,6 +188,7 @@ const addItem = () => {
         is_fixed: newItem.value.is_fixed,
         day_of_month: newItem.value.day_of_month,
         endDate: newItem.value.endDate,
+        category: newItem.value.category,
     }
     store.addTransaction(newTransaction);
     adding.value = false;
