@@ -23,7 +23,7 @@
 
 <script setup lang="ts">
 import {defineProps, defineEmits, computed} from 'vue';
-import {formatDate, isLastDayOfThisMonth} from "../../utils/date";
+import {formatDate} from "../../utils/date";
 
 interface Props {
     items: {
