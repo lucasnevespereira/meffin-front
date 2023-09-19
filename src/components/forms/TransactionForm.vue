@@ -188,7 +188,6 @@ const addItem = () => {
         day_of_month: newItem.value.day_of_month,
         endDate: newItem.value.endDate,
     }
-    console.log("new transaction", newTransaction)
     store.addTransaction(newTransaction);
     adding.value = false;
     resetNewItem();

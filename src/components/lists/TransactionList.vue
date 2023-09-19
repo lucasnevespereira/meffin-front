@@ -7,10 +7,15 @@
                     <span :class="itemColor" class="ml-4 text-sm md:text-base">{{ item.amount }} €</span>
                 </div>
                 <div class="text-sm md:text-base">
-                    <span v-if="item.is_fixed && item.day_of_month > 0" class="mr-4 hidden sm:inline text-blue-600">Tous les <b>{{ item.day_of_month }}</b></span>
-                    <span v-else-if="item.day_of_month > 0" class="hidden sm:inline text-yellow-600">Le <b>{{ item.day_of_month }} ce mois</b></span>
-                    <span v-else-if="!item.is_fixed && item.endDate.length > 0" class="mr-4 hidden sm:inline text-yellow-600">Jusqu'au {{ formatDate(item.endDate) }}</span>
-                    <span v-if="item.is_fixed" class="bg-blue-200 text-blue-700 py-1 px-3 rounded-full text-xs uppercase">Fixe</span>
+                    <span v-if="item.is_fixed && item.day_of_month > 0" class="mr-4 hidden sm:inline text-blue-600">Tous les <b>{{
+                        item.day_of_month
+                        }}</b></span>
+                    <span v-else-if="item.day_of_month > 0"
+                          class="hidden sm:inline text-yellow-600">Le <b>{{ item.day_of_month }} ce mois</b></span>
+                    <span v-else-if="!item.is_fixed && item.endDate.length > 0"
+                          class="mr-4 hidden sm:inline text-yellow-600">Jusqu'au {{ formatDate(item.endDate) }}</span>
+                    <span v-if="item.is_fixed"
+                          class="bg-blue-200 text-blue-700 py-1 px-3 rounded-full text-xs uppercase">Fixe</span>
                 </div>
                 <button @click="emit('removeItem', item.id)" class="btn btn-xs bg-accent ml-4">x</button>
             </li>
@@ -21,7 +26,7 @@
 
 <script setup lang="ts">
 import {defineProps, defineEmits, computed} from 'vue';
-import {formatDate} from "../../utils/date";
+import {formatDate} from "@/utils/date";
 
 interface Props {
     items: {
@@ -30,7 +35,7 @@ interface Props {
         description: string,
         is_fixed: boolean,
         endDate: string,
-        day_of_month?: number
+        day_of_month: number
     }[];
     type: "income" | "expense";
 }

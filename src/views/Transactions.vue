@@ -5,14 +5,12 @@
             <p class="text-xl font-medium">Bonjour, {{ user.nickname }}</p>
         </div>
 
-        <Loader v-if="isFetching" />
+        <Loader v-if="isFetching"/>
 
         <div class="p-6 bg-white rounded-xl shadow-md space-y-6">
             <h2 class="text-2xl font-bold">Mes entrées</h2>
             <TransactionList :items="incomes" type="income" @removeItem="handleRemoveTransaction"/>
-            <TransactionForm :modelValue="incomes" type="income"
-                             @update:modelValue="updatedIncomes => incomes = updatedIncomes"
-                             @addTransaction="handleAddTransaction"/>
+            <TransactionForm :modelValue="incomes" type="income"/>
         </div>
 
         <div class="my-6 border-b-2"></div>
@@ -20,9 +18,7 @@
         <div class="p-6 bg-white rounded-xl shadow-md space-y-6">
             <h2 class="text-2xl font-bold mt-6">Mes dépenses</h2>
             <TransactionList :items="expenses" type="expense" @removeItem="handleRemoveTransaction"></TransactionList>
-            <TransactionForm :modelValue="expenses" type="expense"
-                             @update:modelValue="updatedExpenses => expenses = updatedExpenses"
-                             @addTransaction="handleAddTransaction"/>
+            <TransactionForm :modelValue="expenses" type="expense"/>
         </div>
     </div>
 </template>
@@ -47,13 +43,6 @@ export default {
         const store = useTransactionsStore();
         const auth0 = useAuth0();
 
-        const handleAddTransaction = (type: string, transaction: Transaction) => {
-            const userId = auth0.user.value?.sub;
-            if (userId) {
-                store.addTransaction({userId, ...transaction});
-            }
-        };
-
         const handleRemoveTransaction = (transactionId: string) => {
             store.removeTransaction(transactionId);
         };
@@ -61,12 +50,23 @@ export default {
         const expenses = computed(() => store.expenses)
         const isFetching = computed(() => store.isFetching)
 
+        const sortedIncomes = computed(() => {
+            return incomes.value.slice().sort((a, b) => {
+                return a.day_of_month - b.day_of_month;
+            });
+        });
+
+        const sortedExpenses = computed(() => {
+            return expenses.value.slice().sort((a, b) => {
+                return a.day_of_month - b.day_of_month;
+            });
+        });
+
         return {
             user: auth0.user,
-            incomes: incomes,
-            expenses: expenses,
+            incomes: sortedIncomes,
+            expenses: sortedExpenses,
             isFetching: isFetching,
-            handleAddTransaction,
             handleRemoveTransaction
         }
     }
