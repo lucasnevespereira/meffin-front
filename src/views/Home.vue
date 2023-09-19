@@ -1,5 +1,5 @@
 <template>
-    <div class="container mx-auto p-4 space-y-8">
+    <div class="container mx-auto px-2 sm:px-4 space-y-8">
         <Landing v-if="!isAuthenticated && !isFetching"/>
         <div v-else>
             <Loader v-if="isFetching"/>
