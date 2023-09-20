@@ -12,7 +12,6 @@ import json from 'highlight.js/lib/languages/json';
 import hljsVuePlugin from "@highlightjs/vue-plugin";
 import "highlight.js/styles/github.css";
 import {createPinia} from 'pinia'
-import * as process from "process";
 
 const pinia = createPinia()
 

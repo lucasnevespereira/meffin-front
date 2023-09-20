@@ -26,6 +26,10 @@ export function createRouter(app: App): Router {
         name: "transactions",
         component: Transactions,
         beforeEnter: createAuthGuard(app)
+      },
+      {
+        path: "/:catchAll(.*)",
+        redirect: "/"
       }
     ],
     history: createWebHistory()
