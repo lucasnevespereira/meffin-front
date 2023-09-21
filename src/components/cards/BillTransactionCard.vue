@@ -7,7 +7,7 @@
             <div class="relative">
                 <div class="w-32">
                     <select
-                        class="form-select w-full h-9 text-gray-900 bg-gray-100 border-none rounded-lg mt-1 focus:ring focus:ring-blue-200 focus:outline-none"
+                        class="form-select w-full h-9 text-gray-900 bg-gray-100 border-none rounded-sm lg:rounded-lg text-sm lg:text-md mt-1 focus:ring focus:ring-blue-200 focus:outline-none"
                         v-model="viewMode"
                     >
                         <option :value="VIEW_MODE_ALL">{{ VIEW_MODE_LABEL_ALL }}</option>
