@@ -65,7 +65,7 @@
                     </select>
                 </div>
 
-                <div v-if="editedTransaction.category === 'Autre'">
+                <div v-if="editedTransaction.category === otherCategory">
                     <label for="editCustomCategory" class="block text-sm font-medium text-gray-700">Catégorie
                         Personnalisée:</label>
                     <input id="editCustomCategory" v-model="editedCustomCategory"
@@ -84,7 +84,7 @@
 <script setup lang="ts">
 import {ref, computed} from 'vue';
 import {getLastDayOfThisMonth} from "@/utils/date";
-import {useCategories} from '@/utils/categories';
+import {useCategories, defaultCategory, otherCategory} from '@/utils/categories';
 import {TransactionType} from '@/enum'
 
 interface Props {
@@ -94,7 +94,7 @@ interface Props {
 const {editedTransaction} = defineProps<Props>();
 const emit = defineEmits(['updateTransaction', 'cancelEdit']);
 
-const {categories, defaultCategory, otherCategory} = useCategories(editedTransaction?.type as string);
+const categories = useCategories(editedTransaction?.type as string);
 
 const onlyThisMonth = ref(false);
 const editedCustomCategory = ref('');

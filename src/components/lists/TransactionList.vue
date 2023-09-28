@@ -37,6 +37,7 @@ import { computed, ref } from 'vue';
 import { formatDate } from "@/utils/date";
 import TransactionEditForm from "@/components/forms/TransactionEditForm.vue";
 import {useTransactionsStore} from "@/store/transactions";
+import {TransactionType} from "@/enum";
 const store = useTransactionsStore();
 
 interface Props {
@@ -48,7 +49,7 @@ const { items, type } = defineProps<Props>();
 const emit = defineEmits(['removeItem']);
 
 const itemColor = computed(() => {
-    return type === "income" ? "text-green-500" : "text-red-500";
+    return type === TransactionType.INCOME ? "text-green-500" : "text-red-500";
 });
 
 const editMode = ref(false);

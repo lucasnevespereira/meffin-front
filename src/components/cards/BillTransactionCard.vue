@@ -92,6 +92,7 @@
 <script setup>
 import {computed, ref} from 'vue';
 import {formatDate} from '@/utils/date';
+import {defaultCategory, otherCategory} from "@/utils/categories";
 
 const props = defineProps({
     title: String,
@@ -110,19 +111,17 @@ const amountColor = computed(() => {
     return props.isIncome ? 'text-green-500' : 'text-red-500';
 });
 
-const OTHER_CATEGORY = 'Autres';
-
 const categories = ref([]);
 
 // Group transactions by category
 const groupedCategories = {};
 
 for (const item of props.items) {
-    let category = item.category || OTHER_CATEGORY; // Use the constant if no category is specified
+    let category = item.category || otherCategory; // Use the constant if no category is specified
 
     // Check if the category is one of the special categories
-    if (['Aucune', '', 'Autres'].includes(category)) {
-        category = OTHER_CATEGORY;
+    if ([defaultCategory, '', otherCategory].includes(category)) {
+        category = otherCategory;
     }
 
     if (!groupedCategories[category]) {
@@ -149,8 +148,8 @@ for (const category in groupedCategories) {
 const sortedCategories = computed(() => {
     return categories.value.slice().sort((a, b) => {
         // Move "Other" category to the end
-        if (a.category === OTHER_CATEGORY) return 1;
-        if (b.category === OTHER_CATEGORY) return -1;
+        if (a.category === otherCategory) return 1;
+        if (b.category === otherCategory) return -1;
         return a.category.localeCompare(b.category);
     });
 });

@@ -1,11 +1,11 @@
-import {ref, computed} from 'vue';
+import {computed, ref} from 'vue';
 import {TransactionType} from "@/enum";
 
-const defaultCategory = 'Aucune';
+export const defaultCategory = 'Aucune';
 
-const otherCategory = 'Autre';
+export const otherCategory = 'Autres';
 
-const expenseCategories = ref([
+export const expenseCategories = ref([
     'Maison',
     'Transports',
     'Banque',
@@ -13,25 +13,17 @@ const expenseCategories = ref([
     'Abonnements',
     'Sorties',
     'Divers',
-    'Autre'
+    'Autres'
 ]);
 
-const incomeCategories = ref([
+export const incomeCategories = ref([
     'Travail',
     'Cadeau',
     'Freelance',
     'Investissement',
-    'Autre'
+    'Autres'
 ]);
 
 export function useCategories(type: String) {
-    const categories = computed(() => (type === TransactionType.EXPENSE ? expenseCategories.value : incomeCategories.value));
-
-    return {
-        otherCategory,
-        defaultCategory,
-        categories,
-        expenseCategories,
-        incomeCategories,
-    };
+    return computed(() => (type === TransactionType.EXPENSE ? expenseCategories.value : incomeCategories.value))
 }

@@ -59,12 +59,12 @@
                 <div>
                     <label for="category" class="block text-sm font-medium text-gray-700">Catégorie:</label>
                     <select id="category" v-model="newItem.category" class="mt-1 select select-bordered w-full">
-                        <option value="Aucune" selected>Aucune</option>
+                        <option :value="defaultCategory" selected>Aucune</option>
                         <option v-for="category in categories" :key="category" :value="category">{{ category }}</option>
                     </select>
                 </div>
 
-                <div v-if="newItem.category === 'Autre'">
+                <div v-if="newItem.category === otherCategory">
                     <label for="customCategory" class="block text-sm font-medium text-gray-700">Catégorie
                         Personnalisée:</label>
                     <input id="customCategory" v-model="newCustomCategory" placeholder="Enter catégorie personnalisée"
@@ -89,7 +89,7 @@ import {ref, computed} from 'vue';
 import {getLastDayOfThisMonth} from "@/utils/date";
 import {useTransactionsStore} from "@/store/transactions";
 import {useAuth0} from "@auth0/auth0-vue";
-import {useCategories} from "@/utils/categories";
+import {useCategories, otherCategory, defaultCategory} from "@/utils/categories";
 import {TransactionType} from '@/enum'
 
 const store = useTransactionsStore();
@@ -109,7 +109,7 @@ interface Props {
 }
 
 const {type} = defineProps<Props>();
-const {categories, defaultCategory, otherCategory} = useCategories(type);
+const categories = useCategories(type);
 
 const onlyThisMonth = ref(false);
 
