@@ -1,78 +1,57 @@
-# Scenario #1 - Logging In and Gated Content
+<div align="center">
+<h1 align="center">
+<img src="https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/ec559a9f6bfd399b82bb44393651661b08aaf7ba/icons/folder-markdown-open.svg" width="100" />
+<br>meffin-front
+</h1>
+<h3>◦ Developed with the software and tools below.</h3>
 
-This sample demonstrates:
+<p align="center">
+<img src="https://img.shields.io/badge/GNU%20Bash-4EAA25.svg?style&logo=GNU-Bash&logoColor=white" alt="GNU%20Bash" />
+<img src="https://img.shields.io/badge/SVG-FFB13B.svg?style&logo=SVG&logoColor=black" alt="SVG" />
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E.svg?style&logo=JavaScript&logoColor=black" alt="JavaScript" />
+<img src="https://img.shields.io/badge/HTML5-E34F26.svg?style&logo=HTML5&logoColor=white" alt="HTML5" />
+<img src="https://img.shields.io/badge/PostCSS-DD3A0A.svg?style&logo=PostCSS&logoColor=white" alt="PostCSS" />
+<img src="https://img.shields.io/badge/Autoprefixer-DD3735.svg?style&logo=Autoprefixer&logoColor=white" alt="Autoprefixer" />
+<img src="https://img.shields.io/badge/Vite-646CFF.svg?style&logo=Vite&logoColor=white" alt="Vite" />
+<img src="https://img.shields.io/badge/Axios-5A29E4.svg?style&logo=Axios&logoColor=white" alt="Axios" />
 
-- Logging in to Auth0 using Redirect Mode
-- Accessing profile information that has been provided in the ID token
-- Gated content. The `/profile` route is not accessible without having first logged in
+<img src="https://img.shields.io/badge/PowerShell-5391FE.svg?style&logo=PowerShell&logoColor=white" alt="PowerShell" />
+<img src="https://img.shields.io/badge/Vue.js-4FC08D.svg?style&logo=vuedotjs&logoColor=white" alt="Vue.js" />
+<img src="https://img.shields.io/badge/TypeScript-3178C6.svg?style&logo=TypeScript&logoColor=white" alt="TypeScript" />
+<img src="https://img.shields.io/badge/Docker-2496ED.svg?style&logo=Docker&logoColor=white" alt="Docker" />
+<img src="https://img.shields.io/badge/Express-000000.svg?style&logo=Express&logoColor=white" alt="Express" />
+<img src="https://img.shields.io/badge/JSON-000000.svg?style&logo=JSON&logoColor=white" alt="JSON" />
+<img src="https://img.shields.io/badge/Markdown-000000.svg?style&logo=Markdown&logoColor=white" alt="Markdown" />
+</p>
+<img src="https://img.shields.io/github/languages/top/lucasnevespereira/meffin-front?style&color=5D6D7E" alt="GitHub top language" />
+<img src="https://img.shields.io/github/languages/code-size/lucasnevespereira/meffin-front?style&color=5D6D7E" alt="GitHub code size in bytes" />
+<img src="https://img.shields.io/github/commit-activity/m/lucasnevespereira/meffin-front?style&color=5D6D7E" alt="GitHub commit activity" />
+<img src="https://img.shields.io/github/license/lucasnevespereira/meffin-front?style&color=5D6D7E" alt="GitHub license" />
+</div>
 
-## Project setup
+---
 
-```bash
-npm install
-```
+## 📖 Table of Contents
+- [📖 Table of Contents](#-table-of-contents)
+- [📍 Overview](#-overview)
+- [📦 Features](#-features)
+---
 
-### Configuration
 
-The project needs to be configured with your Auth0 domain and client ID in order for the authentication flow to work.
+## 📍 Overview
 
-To do this, first copy `auth_config.json.example` into a new file in the same folder called `auth_config.json`, and replace the values within with your own Auth0 application credentials:
+Small application to register monthly transactions (incomes or expenses) and calculate balance for current month
 
-```json
-{
-  "domain": "<YOUR AUTH0 DOMAIN>",
-  "clientId": "<YOUR AUTH0 CLIENT ID>"
-}
-```
+---
 
-### Compiles and hot-reloads for development
+## 📦 Features
 
-```bash
-npm run serve
-```
+- Create a transaction, income or expense:
+  - Description of transaction
+  - Amount of transaction
+  - Enter transaction day of the month or end date or set just for current month
+  - Set transaction as fixed, so it comes back every month
 
-## Deployment
+- Update and Delete transaction
 
-### Compiles and minifies for production
-
-```bash
-npm run build
-```
-
-### Docker build
-
-To build and run the Docker image, run `exec.sh`, or `exec.ps1` on Windows.
-
-### Lints and fixes files
-
-```bash
-npm run lint
-```
-
-## What is Auth0?
-
-Auth0 helps you to:
-
-- Add authentication with [multiple authentication sources](https://docs.auth0.com/identityproviders), either social like **Google, Facebook, Microsoft Account, LinkedIn, GitHub, Twitter, Box, Salesforce, among others**, or enterprise identity systems like **Windows Azure AD, Google Apps, Active Directory, ADFS or any SAML Identity Provider**.
-- Add authentication through more traditional **[username/password databases](https://docs.auth0.com/mysql-connection-tutorial)**.
-- Add support for **[linking different user accounts](https://docs.auth0.com/link-accounts)** with the same user.
-- Support for generating signed [Json Web Tokens](https://docs.auth0.com/jwt) to call your APIs and **flow the user identity** securely.
-- Analytics of how, when and where users are logging in.
-- Pull data from other sources and add it to the user profile, through [JavaScript rules](https://docs.auth0.com/rules).
-
-## Create a Free Auth0 Account
-
-1.  Go to [Auth0](https://auth0.com/signup) and click Sign Up.
-2.  Use Google, GitHub or Microsoft Account to login.
-
-## Issue Reporting
-
-If you have found a bug or if you have a feature request, please report them at this repository issues section. Please do not report security vulnerabilities on the public GitHub issue tracker. The [Responsible Disclosure Program](https://auth0.com/whitehat) details the procedure for disclosing security issues.
-
-## Author
-
-[Auth0](https://auth0.com)
-
-## License
-
-This project is licensed under the MIT license. See the [LICENSE](../LICENSE) file for more info.
+- View month transactions and current balance
