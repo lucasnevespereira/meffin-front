@@ -105,7 +105,7 @@ interface Props {
         endDate?: string,
         category?: string
     }[];
-    type: "income" | "expense";
+    type: TransactionType;
 }
 
 const {type} = defineProps<Props>();

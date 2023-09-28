@@ -9,16 +9,17 @@
 
         <div class="p-6 bg-white rounded-xl shadow-md space-y-6">
             <h2 class="text-2xl font-bold">Mes entrées</h2>
-            <TransactionList :items="incomes" type="income" @removeItem="handleRemoveTransaction"/>
-            <TransactionForm :modelValue="incomes" type="income"/>
+            <TransactionList :items="incomes" :type="TransactionType.INCOME" @removeItem="handleRemoveTransaction"/>
+            <TransactionForm :modelValue="incomes" :type="TransactionType.INCOME"/>
         </div>
 
         <div class="my-6 border-b-2"></div>
 
         <div class="p-6 bg-white rounded-xl shadow-md space-y-6">
             <h2 class="text-2xl font-bold mt-6">Mes dépenses</h2>
-            <TransactionList :items="expenses" type="expense" @removeItem="handleRemoveTransaction"></TransactionList>
-            <TransactionForm :modelValue="expenses" type="expense"/>
+            <TransactionList :items="expenses" :type="TransactionType.EXPENSE"
+                             @removeItem="handleRemoveTransaction"></TransactionList>
+            <TransactionForm :modelValue="expenses" :type="TransactionType.EXPENSE"/>
         </div>
     </div>
 </template>
@@ -31,9 +32,15 @@ import {useTransactionsStore} from '@/store/transactions';
 import {useAuth0} from "@auth0/auth0-vue";
 import {computed, ref} from "vue";
 import Loader from "@/components/Loader.vue";
+import {TransactionType} from "@/enum";
 
 
 export default {
+    computed: {
+        TransactionType() {
+            return TransactionType
+        }
+    },
     components: {
         Loader,
         TransactionForm,
