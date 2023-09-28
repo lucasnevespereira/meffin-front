@@ -1,5 +1,10 @@
 import {defineStore} from "pinia";
-import { fetchUserTransactions, createTransaction, deleteTransaction } from "../services/transactionService";
+import {
+    fetchUserTransactions,
+    createTransaction,
+    updateTransaction,
+    deleteTransaction
+} from "../services/transactionService";
 
 
 export const useTransactionsStore = defineStore({
@@ -30,6 +35,31 @@ export const useTransactionsStore = defineStore({
                 console.error(error);
             } finally {
                 this.isFetching = false
+            }
+        },
+        async updateTransaction(updatedTransaction: Transaction) {
+            this.isFetching = true;
+
+            try {
+                const response = await updateTransaction(updatedTransaction);
+                if (response && response.data) {
+                    if (updatedTransaction.type === 'income') {
+                        const index = this.incomes.findIndex(t => t.id === updatedTransaction.id);
+                        if (index !== -1) {
+                            this.incomes[index] = response.data;
+                        }
+                    } else if (updatedTransaction.type === 'expense') {
+                        const index = this.expenses.findIndex(t => t.id === updatedTransaction.id);
+                        if (index !== -1) {
+                            this.expenses[index] = response.data;
+                        }
+                    }
+                }
+            } catch (error) {
+                this.error = "Failed to update transaction.";
+                console.error(error);
+            } finally {
+                this.isFetching = false;
             }
         },
         async removeTransaction(transactionId: string) {

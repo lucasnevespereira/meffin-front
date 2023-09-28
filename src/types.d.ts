@@ -19,3 +19,4 @@ interface CreateTransaction {
     endDate: string;
     category: string;
 }
+

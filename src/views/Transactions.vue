@@ -29,7 +29,7 @@ import TransactionForm from "@/components/forms/TransactionForm.vue";
 
 import {useTransactionsStore} from '@/store/transactions';
 import {useAuth0} from "@auth0/auth0-vue";
-import {computed} from "vue";
+import {computed, ref} from "vue";
 import Loader from "@/components/Loader.vue";
 
 
@@ -46,6 +46,7 @@ export default {
         const handleRemoveTransaction = (transactionId: string) => {
             store.removeTransaction(transactionId);
         };
+
         const incomes = computed(() => store.incomes)
         const expenses = computed(() => store.expenses)
         const isFetching = computed(() => store.isFetching)

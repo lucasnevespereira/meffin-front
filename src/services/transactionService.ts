@@ -12,6 +12,11 @@ export async function createTransaction(transaction: CreateTransaction) {
     return await axios.post(url, transaction);
 }
 
+export async function updateTransaction(transaction: Transaction) {
+    const url = `${baseUrl}/transactions`;
+    return await axios.put(url, transaction);
+}
+
 export async function deleteTransaction(transactionId: string) {
     const url = `${baseUrl}/transactions/${transactionId}`;
     return await axios.delete(url);
