@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits, computed, ref } from 'vue';
+import { computed, ref } from 'vue';
 import { formatDate } from "@/utils/date";
 import TransactionEditForm from "@/components/forms/TransactionEditForm.vue";
 import {useTransactionsStore} from "@/store/transactions";

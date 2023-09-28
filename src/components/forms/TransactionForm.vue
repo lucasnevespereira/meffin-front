@@ -85,7 +85,7 @@
 
 
 <script setup lang="ts">
-import {ref, defineProps, computed} from 'vue';
+import {ref, computed} from 'vue';
 import {getLastDayOfThisMonth} from "@/utils/date";
 import {useTransactionsStore} from "@/store/transactions";
 import {useAuth0} from "@auth0/auth0-vue";
