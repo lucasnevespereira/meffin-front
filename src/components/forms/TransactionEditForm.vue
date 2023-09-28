@@ -58,7 +58,10 @@
                         <option :value="defaultCategory" :selected="editedTransaction.category === defaultCategory">
                             {{ defaultCategory }}
                         </option>
-                        <option v-for="category in categories" :key="category" :value="category">{{ category }}</option>
+                        <option v-for="category in categoriesOptions" :key="category" :value="category">{{
+                            category
+                            }}
+                        </option>
                     </select>
                 </div>
 
@@ -81,6 +84,8 @@
 <script setup lang="ts">
 import {ref, computed} from 'vue';
 import {getLastDayOfThisMonth} from "@/utils/date";
+import {useCategories} from '@/utils/categories';
+import {TransactionType} from '@/enum'
 
 interface Props {
     editedTransaction: Transaction | null;
@@ -89,35 +94,16 @@ interface Props {
 const {editedTransaction} = defineProps<Props>();
 const emit = defineEmits(['updateTransaction', 'cancelEdit']);
 
+const {categories, defaultCategory, otherCategory} = useCategories(editedTransaction?.type as string);
+
 const onlyThisMonth = ref(false);
 const editedCustomCategory = ref('');
 
-const defaultCategory = 'Aucune';
 
-const expenseCategories = ref([
-    'Maison',
-    'Transports',
-    'Banque/Assurance',
-    'Crédits',
-    'Abonnements',
-    'Sorties',
-    'Divers',
-    'Autre'
-]);
-
-const incomeCategories = ref([
-    'Travail',
-    'Cadeau',
-    'Freelance',
-    'Investissements',
-    'Autre'
-]);
-
-
-const categories = computed(() => {
+const categoriesOptions = computed(() => {
     if (!editedTransaction) return [];
 
-    const selectedCategories = editedTransaction.type === 'expense' ? expenseCategories.value : incomeCategories.value;
+    const selectedCategories = categories.value
 
     if (!selectedCategories) return [];
 
@@ -129,7 +115,7 @@ const categories = computed(() => {
 });
 
 const fixedLabel = computed(() => {
-    return editedTransaction?.type === 'income' ? "Entrée fixe" : "Dépense fixe";
+    return editedTransaction?.type === TransactionType.INCOME ? "Entrée fixe" : "Dépense fixe";
 });
 
 const handleOnlyThisMonthChange = () => {
@@ -145,9 +131,9 @@ const handleOnlyThisMonthChange = () => {
 
 const saveEdit = () => {
     if (editedTransaction) {
-        if (editedTransaction.category === 'Autre' && editedCustomCategory.value) {
+        if (editedTransaction.category === otherCategory && editedCustomCategory.value) {
             editedTransaction.category = editedCustomCategory.value;
-        } else if (editedTransaction.category === 'Autre' && !editedCustomCategory.value) {
+        } else if (editedTransaction.category === otherCategory && !editedCustomCategory.value) {
             editedTransaction.category = defaultCategory; // Change to default category if custom category is empty
         }
         emit('updateTransaction', editedTransaction);

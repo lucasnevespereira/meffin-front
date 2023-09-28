@@ -89,6 +89,8 @@ import {ref, computed} from 'vue';
 import {getLastDayOfThisMonth} from "@/utils/date";
 import {useTransactionsStore} from "@/store/transactions";
 import {useAuth0} from "@auth0/auth0-vue";
+import {useCategories} from "@/utils/categories";
+import {TransactionType} from '@/enum'
 
 const store = useTransactionsStore();
 const auth0 = useAuth0();
@@ -106,34 +108,13 @@ interface Props {
     type: "income" | "expense";
 }
 
+const {type} = defineProps<Props>();
+const {categories, defaultCategory, otherCategory} = useCategories(type);
+
 const onlyThisMonth = ref(false);
-
-const expenseCategories = ref([
-    'Maison',
-    'Transports',
-    'Banque',
-    'Assurance',
-    'Abonnements',
-    'Sorties',
-    'Divers',
-    'Autre'
-]);
-
-const incomeCategories = ref([
-    'Travail',
-    'Cadeau',
-    'Freelance',
-    'Investissement',
-    'Autre'
-]);
 
 const newCustomCategory = ref('');
 
-const categories = computed(() => {
-    return type === 'expense' ? expenseCategories.value : incomeCategories.value;
-});
-
-const {type} = defineProps<Props>();
 
 const handleOnlyThisMonthChange = () => {
     if (onlyThisMonth.value) {
@@ -152,7 +133,7 @@ const newItem = ref({
     is_fixed: false,
     day_of_month: 0,
     endDate: '',
-    category: 'Aucune'
+    category: defaultCategory
 });
 
 const startAdd = () => {
@@ -167,16 +148,16 @@ const resetNewItem = () => {
         is_fixed: false,
         day_of_month: 0,
         endDate: '',
-        category: 'Aucune'
+        category: defaultCategory
     };
     newCustomCategory.value = '';
 }
 
 const addItem = () => {
-    if (newItem.value.category === 'Autre' && newCustomCategory.value) {
+    if (newItem.value.category === otherCategory && newCustomCategory.value) {
         newItem.value.category = newCustomCategory.value;
-    } else if (newItem.value.category === 'Autre' && !newCustomCategory.value) {
-        newItem.value.category = 'Aucune';
+    } else if (newItem.value.category === otherCategory && !newCustomCategory.value) {
+        newItem.value.category = defaultCategory;
     }
 
     const userId = auth0.user.value?.sub as string;
@@ -201,10 +182,10 @@ const cancelAdd = () => {
 };
 
 const fixedLabel = computed(() => {
-    return type === "income" ? "Entrée fixe" : "Dépense fixe";
+    return type === TransactionType.INCOME ? "Entrée fixe" : "Dépense fixe";
 });
 
 const addButtonLabel = computed(() => {
-    return type === "income" ? "Ajouter une entrée" : "Ajouter une dépense";
+    return type === TransactionType.INCOME ? "Ajouter une entrée" : "Ajouter une dépense";
 });
 </script>

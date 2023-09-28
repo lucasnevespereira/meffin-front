@@ -5,6 +5,7 @@ import {
     updateTransaction,
     deleteTransaction
 } from "../services/transactionService";
+import {TransactionType} from "@/enum";
 
 
 export const useTransactionsStore = defineStore({
@@ -24,9 +25,9 @@ export const useTransactionsStore = defineStore({
             try {
                 const response = await createTransaction(transaction);
                 if (response && response.data) {
-                    if (transaction.type === 'income') {
+                    if (transaction.type === TransactionType.INCOME) {
                         this.incomes.push(response.data);
-                    } else if (transaction.type === 'expense') {
+                    } else if (transaction.type === TransactionType.EXPENSE) {
                         this.expenses.push(response.data);
                     }
                 }
@@ -43,12 +44,12 @@ export const useTransactionsStore = defineStore({
             try {
                 const response = await updateTransaction(updatedTransaction);
                 if (response && response.data) {
-                    if (updatedTransaction.type === 'income') {
+                    if (updatedTransaction.type === TransactionType.INCOME) {
                         const index = this.incomes.findIndex(t => t.id === updatedTransaction.id);
                         if (index !== -1) {
                             this.incomes[index] = response.data;
                         }
-                    } else if (updatedTransaction.type === 'expense') {
+                    } else if (updatedTransaction.type === TransactionType.EXPENSE) {
                         const index = this.expenses.findIndex(t => t.id === updatedTransaction.id);
                         if (index !== -1) {
                             this.expenses[index] = response.data;
