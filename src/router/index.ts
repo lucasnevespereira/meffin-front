@@ -1,9 +1,9 @@
 import { createRouter as createVueRouter, createWebHistory, Router } from "vue-router";
-import Home from "../views/Home.vue";
-import Profile from "../views/Profile.vue";
-import Transactions from "../views/Transactions.vue";
+import Profile from "@/views/Profile.vue";
+import Transactions from "@/views/Transactions.vue";
 import { createAuthGuard } from "@auth0/auth0-vue";
 import { App } from 'vue';
+import Home from "@/views/Home.vue";
 
 
 

@@ -1,7 +1,7 @@
 <template>
     <div v-if="isOpen" class="absolute top-16 left-0 w-full bg-base-100 lg:hidden z-10">
         <div v-if="!isAuthenticated && !isLoading" class="px-4 py-2">
-            <button id="qsLoginBtn" class="btn btn-primary block w-full" @click.prevent="login">Login</button>
+            <button id="qsLoginBtn" class="btn btn-primary block w-full" @click.prevent="login">Se Connecter</button>
         </div>
         <div v-if="isAuthenticated" class="py-4">
             <div class="flex items-center mb-4 px-4">

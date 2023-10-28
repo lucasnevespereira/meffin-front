@@ -1,40 +1,38 @@
-<template>
-    <div id="app" class="flex flex-col h-screen">
-        <Header/>
-        <div class="container mx-auto flex-grow">
-            <div class="mt-5">
-                <router-view/>
-            </div>
-        </div>
-        <Footer/>
-    </div>
-</template>
-
-<script lang="ts">
-import Error from "./components/Error.vue";
-import Header from "./components/Header.vue";
+<script setup lang="ts">
+import Home from "./views/Home.vue";
 import Footer from "./components/Footer.vue";
 import {useTransactionsStore} from "@/store/transactions";
 import {useAuth0} from "@auth0/auth0-vue";
-import { watch} from "vue";
+import {ref, watch} from "vue";
+import Landing from "@/components/Landing.vue";
+import Header from "@/components/Header.vue";
+import LeftSidebar from "@/components/nav/LeftSidebar.vue";
 
-export default {
-    components: {
-        Footer,
-        Header,
-        Error
-    },
-    setup() {
-        const store = useTransactionsStore();
-        const auth0 = useAuth0();
-        watch(() => auth0.user.value, async (newUser) => {
-            if (newUser) {
-                const userId = newUser.sub;
-                if (userId) {
-                    await store.fetchTransactions(userId);
-                }
-            }
-        }, { immediate: true });
-    }
-};
+
+// const store = useTransactionsStore();
+const auth0 = useAuth0();
+const isAuthenticated = ref(auth0.isAuthenticated.value);
+watch(() => auth0.isAuthenticated.value, (newIsAuthenticated) => {
+    isAuthenticated.value = newIsAuthenticated;
+});
+
+
 </script>
+
+<template>
+    <div id="app" class="h-screen bg-secondary">
+        <div class="flex flex-col" v-if="!isAuthenticated">
+            <Header/>
+            <Landing/>
+            <Footer/>
+        </div>
+        <div class="flex" v-else>
+            <LeftSidebar />
+            <div class="w-4/5 rounded-3xl bg-base-100 max-w-5xl min-h-fit m-5 overflow-y-auto">
+                <router-view/>
+            </div>
+        </div>
+    </div>
+</template>
+
+

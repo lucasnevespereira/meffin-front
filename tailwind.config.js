@@ -14,15 +14,15 @@ module.exports = {
     daisyui: {
         themes: ["light", "dark", "cupcake", "wireframe",
             {
-                custom: {
-                    "primary": "#8c76e0",
-                    "secondary": "#beb5ff",
-                    "accent": "#d2fcae",
-                    "neutral": "#35233e",
+                jenny: {
+                    "primary": "#193346",
+                    "secondary": "#ECF6FA",
+                    "accent": "#3D97D9",
+                    "neutral": "#ECF6FA",
                     "base-100": "#fcfcfd",
                     "info": "#85cde0",
                     "success": "#1edcbf",
-                    "warning": "#9c5e07",
+                    "warning": "#f4dd66",
                     "error": "#ec7484",
                 },
             }],

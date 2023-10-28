@@ -1,5 +1,5 @@
 <template>
-    <footer class="text-center py-3">
+    <footer class="text-center py-3 flex">
         <div class="h-10 w-10 rounded logo mx-auto">
             <img src="/logo.svg" alt="Meffin Logo" class="h-full w-full object-contain">
         </div>
