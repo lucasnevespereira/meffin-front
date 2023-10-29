@@ -4,6 +4,7 @@ import Transactions from "@/views/Transactions.vue";
 import { createAuthGuard } from "@auth0/auth0-vue";
 import { App } from 'vue';
 import Home from "@/views/Home.vue";
+import Dashboard from "@/views/Dashboard.vue";
 
 
 
@@ -12,8 +13,8 @@ export function createRouter(app: App): Router {
     routes: [
       {
         path: "/",
-        name: "home",
-        component: Home
+        name: "dashboard",
+        component: Dashboard
       },
       {
         path: "/profile",

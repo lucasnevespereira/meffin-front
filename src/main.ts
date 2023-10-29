@@ -4,7 +4,21 @@ import {createApp} from "vue";
 import {createRouter} from "./router";
 import {createAuth0} from "@auth0/auth0-vue";
 import {library} from "@fortawesome/fontawesome-svg-core";
-import {faLink, faUser, faPowerOff, faWallet, faBars, faEuroSign, faArrowRight, faArrowDown, faPencil, faTrash, faGauge, faBullseye} from "@fortawesome/free-solid-svg-icons";
+import {
+    faLink,
+    faUser,
+    faPowerOff,
+    faWallet,
+    faBars,
+    faEuroSign,
+    faArrowRight,
+    faArrowDown,
+    faPencil,
+    faTrash,
+    faGauge,
+    faBullseye,
+    faCalendarAlt
+} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import hljs from 'highlight.js/lib/core';
 import json from 'highlight.js/lib/languages/json';
@@ -18,7 +32,7 @@ hljs.registerLanguage('json', json);
 
 const app = createApp(App);
 
-library.add(faLink, faUser, faPowerOff, faWallet, faBars, faEuroSign, faArrowRight, faArrowDown, faPencil, faTrash, faGauge, faBullseye);
+library.add(faLink, faUser, faPowerOff, faWallet, faBars, faEuroSign, faArrowRight, faArrowDown, faPencil, faTrash, faGauge, faBullseye,faCalendarAlt);
 
 app
     .use(hljsVuePlugin)

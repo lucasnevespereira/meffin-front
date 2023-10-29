@@ -1,5 +1,5 @@
 <template>
-    <div class="container mx-auto px-2 sm:px-4 space-y-8 toto">
+    <div class="mx-auto px-2 sm:px-4 space-y-8 toto">
         <Loader v-if="isFetching"/>
         <div class="py-5">
             <div class="text-center mb-6">
