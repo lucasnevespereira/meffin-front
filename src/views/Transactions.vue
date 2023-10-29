@@ -30,7 +30,7 @@ import TransactionForm from "@/components/forms/TransactionForm.vue";
 
 import {useTransactionsStore} from '@/store/transactions';
 import {useAuth0} from "@auth0/auth0-vue";
-import {computed, ref} from "vue";
+import {computed, ref, watch} from "vue";
 import Loader from "@/components/Loader.vue";
 import {TransactionType} from "@/enum";
 
@@ -49,6 +49,15 @@ export default {
     setup() {
         const store = useTransactionsStore();
         const auth0 = useAuth0();
+
+        watch(() => auth0.user.value, async (newUser) => {
+            if (newUser) {
+                const userId = newUser.sub;
+                if (userId) {
+                    await store.fetchTransactions(userId);
+                }
+            }
+        }, {immediate: true});
 
         const handleRemoveTransaction = (transactionId: string) => {
             store.removeTransaction(transactionId);

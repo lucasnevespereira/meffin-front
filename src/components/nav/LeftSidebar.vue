@@ -15,7 +15,7 @@ const logout = () => {
 
 <template>
     <div class="w-1/5">
-        <div class="wrapper flex flex-col min-h-screen">
+        <div class="wrapper flex flex-col min-h-screen sticky z-10 top-0">
             <!-- Logo -->
             <div class="m-5">
                 <router-link to="/">

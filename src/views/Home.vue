@@ -1,7 +1,7 @@
 <template>
-    <div class="container mx-auto px-2 sm:px-4 space-y-8 max-h-px">
+    <div class="container mx-auto px-2 sm:px-4 space-y-8 toto">
         <Loader v-if="isFetching"/>
-        <div class="overflow-y-auto py-5">
+        <div class="py-5">
             <div class="text-center mb-6">
                 <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold">{{ currentMonth }}</h1>
             </div>
@@ -73,3 +73,10 @@ export default {
     }
 };
 </script>
+
+<style>
+.toto {
+    //max-height: 80vh;
+    overflow-y: scroll;
+}
+</style>

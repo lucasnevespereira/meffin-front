@@ -9,26 +9,25 @@ import Header from "@/components/Header.vue";
 import LeftSidebar from "@/components/nav/LeftSidebar.vue";
 
 
-// const store = useTransactionsStore();
 const auth0 = useAuth0();
 const isAuthenticated = ref(auth0.isAuthenticated.value);
 watch(() => auth0.isAuthenticated.value, (newIsAuthenticated) => {
     isAuthenticated.value = newIsAuthenticated;
 });
 
-
 </script>
 
 <template>
-    <div id="app" class="h-screen bg-secondary">
+    <div id="app" class="min-h-screen bg-secondary">
         <div class="flex flex-col" v-if="!isAuthenticated">
             <Header/>
             <Landing/>
             <Footer/>
         </div>
-        <div class="flex" v-else>
-            <LeftSidebar />
-            <div class="w-4/5 rounded-3xl bg-base-100 max-w-5xl min-h-fit m-5 overflow-y-auto">
+        <div class="flex flex-col lg:flex-row" v-else>
+            <LeftSidebar class="hidden lg:block"/>
+            <Header class="block lg:hidden"/>
+            <div class="lg:w-4/5 rounded-3xl bg-base-100 max-w-5xl min-h-fit m-5">
                 <router-view/>
             </div>
         </div>
