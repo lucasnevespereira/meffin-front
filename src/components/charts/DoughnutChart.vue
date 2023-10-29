@@ -1,18 +1,37 @@
-<script setup >
+<script setup>
 
 import {Doughnut} from "vue-chartjs";
 import {Chart as ChartJS, ArcElement, Tooltip, Legend} from 'chart.js'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
+const props = defineProps({
+    expenses: {
+        type: Array,
+        required: true
+    },
+})
+
+// Calculate the total expenses for each category
+const categoryTotals = {};
+props.expenses.forEach((expense) => {
+    const category = expense.category;
+    const amount = expense.amount;
+    if (categoryTotals[category]) {
+        categoryTotals[category] += amount;
+    } else {
+        categoryTotals[category] = amount;
+    }
+});
+
 const chartData = {
-    labels: ['Logement', 'Nourriture', 'Loisirs', 'Santé', 'Impots', 'Cadeaux', 'Divers'],
+    labels: Object.keys(categoryTotals),
     datasets: [
         {
             backgroundColor: ['#32CBFF', '#FECEF1', '#00A5E0', '#89A1EF', '#EF9CDA', '#1E5782', '#526FCC'],
-            data: [944, 120, 50, 80, 76, 344, 435],
+            data: Object.values(categoryTotals),
             hoverOffset: 30,
-            spacing: 20,
+            spacing: 30,
         }
     ],
 }
@@ -75,7 +94,7 @@ const chartOptions = {
 
 <template>
     <div class="container chart-container flex justify-center mx-auto">
-        <Doughnut  :options="chartOptions" :data="chartData"/>
+        <Doughnut :options="chartOptions" :data="chartData"/>
     </div>
 </template>
 <style>

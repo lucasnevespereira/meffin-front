@@ -1,7 +1,9 @@
 <template>
-    <div class="container mx-auto p-8">
-
-        <div class="flex flex-col md:flex-row items-center mb-10">
+    <div class="container flex flex-col p-10">
+        <div class="flex justify-between items-center text-primary">
+            <h2 class="text-3xl p-5 text-primary font-bold">Mon Profil</h2>
+        </div>
+        <div class="flex flex-col  md:flex-row items-center mb-10">
             <div class="w-full md:w-1/4 mb-4 md:mb-0">
                 <img
                         :src="user?.picture"
@@ -31,7 +33,7 @@
 
         <div class="w-full">
             <button @click="showDeleteModal = true"
-                    class="btn btn-secondary mx-auto lg:mx-0 flex items-center space-x-2 mt-4">
+                    class="btn btn-error btn-outline mx-auto lg:mx-0 flex items-center space-x-2 mt-4">
                 <span>Supprimer le compte</span>
             </button>
         </div>
@@ -48,10 +50,11 @@ import {ref} from "vue";
 import {deleteUser} from "@/services/authService";
 import Loader from "@/components/Loader.vue";
 import error from "@/components/Error.vue";
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
 export default {
     name: "profile-view",
-    components: {error, Loader},
+    components: {FontAwesomeIcon, error, Loader},
     setup() {
         const auth0 = useAuth0();
         const showDeleteModal = ref(false);

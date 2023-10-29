@@ -1,28 +1,3 @@
-<template>
-    <div class="container mx-auto p-4 space-y-8">
-        <div class="text-center">
-            <h1 class="text-4xl font-extrabold">Mes transactions</h1>
-            <p class="text-xl font-medium">Bonjour, {{ user.nickname }}</p>
-        </div>
-
-        <Loader v-if="isFetching"/>
-
-        <div class="p-6 bg-white rounded-xl shadow-md space-y-6">
-            <h2 class="text-2xl font-bold">Mes entrées</h2>
-            <TransactionList :items="incomes" :type="TransactionType.INCOME" @removeItem="handleRemoveTransaction"/>
-            <TransactionForm :modelValue="incomes" :type="TransactionType.INCOME"/>
-        </div>
-
-        <div class="my-6 border-b-2"></div>
-
-        <div class="p-6 bg-white rounded-xl shadow-md space-y-6">
-            <h2 class="text-2xl font-bold mt-6">Mes dépenses</h2>
-            <TransactionList :items="expenses" :type="TransactionType.EXPENSE"
-                             @removeItem="handleRemoveTransaction"></TransactionList>
-            <TransactionForm :modelValue="expenses" :type="TransactionType.EXPENSE"/>
-        </div>
-    </div>
-</template>
 
 <script lang="ts">
 import TransactionList from "@/components/lists/TransactionList.vue";
@@ -33,6 +8,7 @@ import {useAuth0} from "@auth0/auth0-vue";
 import {computed, ref, watch} from "vue";
 import Loader from "@/components/Loader.vue";
 import {TransactionType} from "@/enum";
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
 
 export default {
@@ -42,6 +18,7 @@ export default {
         }
     },
     components: {
+        FontAwesomeIcon,
         Loader,
         TransactionForm,
         TransactionList,
@@ -58,6 +35,13 @@ export default {
                 }
             }
         }, {immediate: true});
+
+        const monthNames = [
+            "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet",
+            "Août", "Septembre", "Octobre", "Novembre", "Décembre"
+        ];
+        const currentDate = new Date();
+        const currentMonth = monthNames[currentDate.getMonth()] + ' ' + currentDate.getFullYear();
 
         const handleRemoveTransaction = (transactionId: string) => {
             store.removeTransaction(transactionId);
@@ -88,8 +72,40 @@ export default {
             incomes: sortedIncomes,
             expenses: sortedExpenses,
             isFetching: isFetching,
-            handleRemoveTransaction
+            handleRemoveTransaction,
+            currentMonth
         }
     }
 };
 </script>
+
+<template>
+    <div class="container mx-auto p-4 space-y-8">
+        <div class="flex justify-between items-center text-primary">
+            <h2 class="text-3xl p-5 text-primary font-bold">Transactions</h2>
+            <div class="flex items-center">
+                <p class="p-5 text-lg text-center">{{ currentMonth }}</p>
+                <font-awesome-icon icon="calendar-alt" class="ml-2 text-primary w-6 h-8"/>
+            </div>
+        </div>
+        <Loader v-if="isFetching"/>
+
+        <Loader v-if="isFetching"/>
+
+        <div class="p-6 bg-white rounded-xl shadow-md space-y-6">
+            <h2 class="text-2xl font-bold">Mes entrées</h2>
+            <TransactionList :items="incomes" :type="TransactionType.INCOME" @removeItem="handleRemoveTransaction"/>
+            <TransactionForm :modelValue="incomes" :type="TransactionType.INCOME"/>
+        </div>
+
+        <div class="my-6 border-b-2"></div>
+
+        <div class="p-6 bg-white rounded-xl shadow-md space-y-6">
+            <h2 class="text-2xl font-bold mt-6">Mes dépenses</h2>
+            <TransactionList :items="expenses" :type="TransactionType.EXPENSE"
+                             @removeItem="handleRemoveTransaction"></TransactionList>
+            <TransactionForm :modelValue="expenses" :type="TransactionType.EXPENSE"/>
+        </div>
+    </div>
+</template>
+
