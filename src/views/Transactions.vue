@@ -81,7 +81,7 @@ export default {
 
 <template>
     <div class="container mx-auto space-y-8 sm:p-0 p-4 lg:p-10 sm:mx-auto">
-        <div class="flex justify-between items-center text-primary">
+        <div class="flex sm:flex-col justify-between items-center text-primary">
             <h2 class="text-3xl p-5 text-primary font-bold">Transactions</h2>
             <div class="flex items-center">
                 <p class="text-lg text-center">{{ currentMonth }}</p>

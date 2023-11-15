@@ -19,7 +19,7 @@ defineProps({
 <template>
 
   <div class="card w-full sm:w-1/2 md:w-1/3 lg:w-full shadow-xl text-primary mb-4 sm:mb-0">
-    <div class="card-body text-center p-5">
+    <div class="card-body text-center p-2">
       <p class="lg:text-xl font-light tracking-wider">{{ label }}</p>
       <p class="lg:text-3xl font-bold tracking-wider">{{ amount }} €</p>
     </div>

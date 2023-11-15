@@ -40,7 +40,7 @@ const solde = computed(() => {
 
 <template>
     <div class="container flex flex-col sm:p-0 p-4 lg:p-10 sm:mx-auto">
-        <div class="flex justify-between items-center text-primary">
+        <div class="flex sm:flex-col justify-between items-center text-primary">
             <h2 class="text-3xl p-5 text-primary font-bold">Dashboard</h2>
             <div class="flex items-center">
                 <p class="p-5 text-lg text-center">{{ currentMonth }}</p>
