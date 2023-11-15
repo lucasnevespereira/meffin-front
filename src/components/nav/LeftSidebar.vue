@@ -38,10 +38,10 @@ const logout = () => {
                     <img :src="user.picture" alt="User's profile picture" class="w-8 rounded-full">
                     Mon Profil
                 </router-link>
-                <router-link to="/preferences" class="btn btn-secondary w-full flex justify-start">
-                    <font-awesome-icon icon="cog" class="mr-2"/>
-                    Préferences
-                </router-link>
+<!--                <router-link to="/preferences" class="btn btn-secondary w-full flex justify-start">-->
+<!--                    <font-awesome-icon icon="cog" class="mr-2"/>-->
+<!--                    Préferences-->
+<!--                </router-link>-->
                 <button class="btn btn-secondary w-full flex justify-start" @click.prevent="logout">
                     <font-awesome-icon icon="power-off" class="mr-2"/>
                     Déconnexion

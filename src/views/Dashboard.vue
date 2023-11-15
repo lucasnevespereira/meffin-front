@@ -39,7 +39,7 @@ const solde = computed(() => {
 </script>
 
 <template>
-    <div class="container flex flex-col p-10">
+    <div class="container flex flex-col sm:p-0 p-2 lg:p-10 sm:mx-auto">
         <div class="flex justify-between items-center text-primary">
             <h2 class="text-3xl p-5 text-primary font-bold">Dashboard</h2>
             <div class="flex items-center">
@@ -49,7 +49,7 @@ const solde = computed(() => {
         </div>
         <Loader v-if="isFetching"/>
         <div v-else>
-            <div class="flex flex-grow w-full space-x-5 pt-5">
+            <div class="amount-card-container flex lg:flex-grow w-full lg:space-x-5 pt-5">
                 <AmountCard label="Entrées" :amount="totalIncome.toFixed(2)"/>
                 <AmountCard label="Sorties" :amount="totalExpense.toFixed(2)"/>
                 <AmountCard label="Solde" :amount="solde"/>
@@ -63,5 +63,13 @@ const solde = computed(() => {
 </template>
 
 <style scoped>
+.amount-card-container {}
 
+@media screen and (max-width: 768px) {
+  .amount-card-container {
+    overflow-x: scroll;
+    display: flex;
+    padding: 0;
+  }
+}
 </style>

@@ -9,22 +9,28 @@
                 <h6>{{ user.name }}</h6>
             </div>
             <ul class="space-y-4 px-4">
-                <li class="flex items-center p-2 hover:bg-base-200 rounded">
-                    <router-link to="/profile" class="hover:text-primary flex items-center w-full" @click.native="$emit('closeMenu')">
-                        <font-awesome-icon icon="user" class="mr-3"/>
-                        Mon Profil
-                    </router-link>
-                </li>
+              <li class="flex items-center p-2 hover:bg-base-200 rounded">
+                <router-link to="/" class="hover:text-primary flex items-center w-full" @click.native="$emit('closeMenu')">
+                  <font-awesome-icon icon="user" class="mr-3"/>
+                  Dashboard
+                </router-link>
+              </li>
                 <li class="flex items-center p-2 hover:bg-base-200 rounded">
                     <router-link to="/transactions" class="hover:text-primary flex items-center w-full" @click.native="$emit('closeMenu')">
                         <font-awesome-icon icon="wallet" class="mr-3"/>
                         Transactions
                     </router-link>
                 </li>
+              <li class="flex items-center p-2 hover:bg-base-200 rounded">
+                <router-link to="/profile" class="hover:text-primary flex items-center w-full" @click.native="$emit('closeMenu')">
+                  <font-awesome-icon icon="user" class="mr-3"/>
+                  Mon Profil
+                </router-link>
+              </li>
                 <li class="flex items-center p-2 hover:bg-base-200 rounded">
                     <a id="qsLogoutBtn" href="#" class="hover:text-primary flex items-center w-full" @click.prevent="logout">
                         <font-awesome-icon icon="power-off" class="mr-3"/>
-                        Se Déconnecter
+                        Déconnexion
                     </a>
                 </li>
             </ul>
