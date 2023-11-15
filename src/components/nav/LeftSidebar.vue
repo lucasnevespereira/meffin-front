@@ -25,7 +25,10 @@ const logout = () => {
 
             <!-- Navigation -->
             <div class="space-y-4 m-5 flex-1">
-                <router-link to="/" class="btn btn-secondary w-full flex justify-start">     <font-awesome-icon icon="gauge" class="mr-2"/>Dashboard</router-link>
+                <router-link to="/" class="btn btn-secondary w-full flex justify-start">
+                  <font-awesome-icon icon="gauge" class="mr-2"/>
+                  Dashboard
+                </router-link>
                 <router-link to="/transactions" class="btn btn-secondary w-full flex justify-start items-center">
                     <font-awesome-icon icon="wallet" class="mr-2"/>
                     Transactions

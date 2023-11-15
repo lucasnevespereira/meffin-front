@@ -11,7 +11,7 @@
             <ul class="space-y-4 px-4">
               <li class="flex items-center p-2 hover:bg-base-200 rounded">
                 <router-link to="/" class="hover:text-primary flex items-center w-full" @click.native="$emit('closeMenu')">
-                  <font-awesome-icon icon="user" class="mr-3"/>
+                  <font-awesome-icon icon="gauge" class="mr-3"/>
                   Dashboard
                 </router-link>
               </li>

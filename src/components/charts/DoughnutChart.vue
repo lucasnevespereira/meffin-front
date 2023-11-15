@@ -63,7 +63,7 @@ const chartOptions = {
       position: isMobile.value ? "bottom" : "right",
       align: 'center',
       labels: {
-        boxWidth:  isMobile.value ? 10 : 30,
+        boxWidth:  isMobile.value ? 20 : 30,
         color: '#193346',
         font: {
           weight: '300',

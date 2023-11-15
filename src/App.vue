@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import Home from "./views/Home.vue";
 import Footer from "./components/Footer.vue";
-import {useTransactionsStore} from "@/store/transactions";
 import {useAuth0} from "@auth0/auth0-vue";
 import {ref, watch} from "vue";
 import Landing from "@/components/Landing.vue";

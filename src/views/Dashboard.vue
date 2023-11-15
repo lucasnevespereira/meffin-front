@@ -39,12 +39,11 @@ const solde = computed(() => {
 </script>
 
 <template>
-    <div class="container flex flex-col sm:p-0 p-2 lg:p-10 sm:mx-auto">
+    <div class="container flex flex-col sm:p-0 p-4 lg:p-10 sm:mx-auto">
         <div class="flex justify-between items-center text-primary">
             <h2 class="text-3xl p-5 text-primary font-bold">Dashboard</h2>
             <div class="flex items-center">
                 <p class="p-5 text-lg text-center">{{ currentMonth }}</p>
-                <font-awesome-icon icon="calendar-alt" class="ml-2 text-primary w-6 h-8"/>
             </div>
         </div>
         <Loader v-if="isFetching"/>
