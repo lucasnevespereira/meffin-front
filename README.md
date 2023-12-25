@@ -1,4 +1,4 @@
-# Menu AI Generator
+# Meffin Transactions
 
 - Frontend with [Nuxt 3](https://nuxt.com/docs/getting-started/introduction)
 
