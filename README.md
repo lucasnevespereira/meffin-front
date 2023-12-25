@@ -1,6 +1,6 @@
 # Meffin Transactions
 
-- Frontend with [Nuxt 3](https://nuxt.com/docs/getting-started/introduction)
+- Frontend with [Vue 3](https://vuejs.org/guide/introduction.html)
 
 - Backend with Golang [meffin-transactions-api](https://github.com/lucasnevespereira/meffin-transactions-api)
 
