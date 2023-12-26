@@ -41,14 +41,14 @@ const solde = computed(() => {
 <template>
     <div class="container flex flex-col sm:p-0 p-4 lg:p-10 sm:mx-auto">
         <div class="flex sm:flex-col justify-between items-center text-primary">
-            <h2 class="text-3xl p-5 text-primary font-bold">Dashboard</h2>
+            <h2 class="text-2xl lg:text-3xl p-5 text-primary font-bold">Dashboard</h2>
             <div class="flex items-center">
-                <p class="p-5 text-lg text-center">{{ currentMonth }}</p>
+                <p class="p-5 text-sm lg:text-lg text-center">{{ currentMonth }}</p>
             </div>
         </div>
         <Loader v-if="isFetching"/>
         <div v-else>
-            <div class="amount-card-container flex lg:flex-grow w-full lg:space-x-5 pt-5">
+            <div class="amount-card-container flex lg:flex-grow w-full lg:space-x-5 space-x-1 pt-5">
                 <AmountCard label="Entrées" :amount="totalIncome.toFixed(2)"/>
                 <AmountCard label="Sorties" :amount="totalExpense.toFixed(2)"/>
                 <AmountCard label="Solde" :amount="solde"/>

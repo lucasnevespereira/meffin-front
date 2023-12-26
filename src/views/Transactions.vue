@@ -84,7 +84,7 @@ export default {
         <div class="flex sm:flex-col justify-between items-center text-primary">
             <h2 class="text-3xl p-5 text-primary font-bold">Transactions</h2>
             <div class="flex items-center">
-                <p class="text-lg text-center">{{ currentMonth }}</p>
+                <p class="text-sm lg:text-lg  text-center">{{ currentMonth }}</p>
             </div>
         </div>
         <Loader v-if="isFetching"/>
