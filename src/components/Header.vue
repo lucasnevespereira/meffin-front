@@ -1,6 +1,6 @@
 <template>
     <div class="mb-4">
-        <nav class="p-4 shadow-md">
+        <nav class="p-2 lg:p-4 shadow-md">
             <div class="container mx-auto flex justify-between items-center">
                 <Logo />
                 <MobileNavButton @toggle-menu="mobileMenuOpen = !mobileMenuOpen" />

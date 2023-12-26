@@ -69,7 +69,7 @@
                     <label for="editCustomCategory" class="block text-sm font-medium text-gray-700">Catégorie
                         Personnalisée:</label>
                     <input id="editCustomCategory" v-model="editedCustomCategory"
-                           placeholder="Enter catégorie personnalisée" class="mt-1 input input-bordered w-full"/>
+                           placeholder="Entrer catégorie personnalisée" class="mt-1 input input-bordered w-full"/>
                 </div>
             </div>
 

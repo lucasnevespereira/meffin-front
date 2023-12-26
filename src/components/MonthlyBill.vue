@@ -1,5 +1,5 @@
 <template>
-    <div class="p-2 sm:p-6 bg-white rounded-xl shadow-md space-y-4 sm:space-y-8">
+    <div class="p-2 sm:p-6 bg-white rounded-xl shadow-md space-y-4 sm:space-y-8 ">
         <BillTransactionCard :items="incomes" title="Entrées" :isIncome="true" />
         <BillTransactionCard :items="expenses" title="Dépenses" :isIncome="false" />
         <BillBalanceCard :solde="solde" />

@@ -1,7 +1,7 @@
 <template>
     <div class="hidden lg:flex items-center">
         <div v-if="!isAuthenticated && !isLoading">
-            <button id="qsLoginBtn" class="btn btn-outline" @click.prevent="login">Se Connecter</button>
+            <button id="qsLoginBtn" class="btn btn-primary" @click.prevent="login">Se Connecter</button>
         </div>
         <div v-if="isAuthenticated" class="dropdown dropdown-end">
             <div tabindex="0" class="avatar flex" @click="toggleDropdown">
