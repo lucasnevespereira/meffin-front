@@ -89,8 +89,6 @@ export default {
         </div>
         <Loader v-if="isFetching"/>
 
-        <Loader v-if="isFetching"/>
-
         <div class="p-6 bg-white rounded-xl shadow-md space-y-6">
             <h2 class="text-2xl font-bold">Mes entrées</h2>
             <TransactionList :items="incomes" :type="TransactionType.INCOME" @removeItem="handleRemoveTransaction"/>

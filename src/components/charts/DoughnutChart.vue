@@ -67,9 +67,9 @@ const chartOptions = {
         color: '#193346',
         font: {
           weight: '300',
-          size: isMobile.value ? 14 : 25
+          size: isMobile.value ? 14 : 20
         },
-        padding:  isMobile.value ? 20 : 50,
+        padding:  isMobile.value ? 20 : 30,
         // usePointStyle: true,
       },
     },
@@ -100,8 +100,8 @@ const chartOptions = {
 
   layout: {
     padding: {
-      left: isMobile.value ? 10 : 20, // Add left margin to the chart
-      right: isMobile.value ? 10 : 40, // Add right margin to the chart to make room for the legends
+      left: isMobile.value ? 10 : 10, // Add left margin to the chart
+      right: isMobile.value ? 10 : 10, // Add right margin to the chart to make room for the legends
     },
   },
 }
