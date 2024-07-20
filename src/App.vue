@@ -16,16 +16,16 @@ watch(() => auth0.isAuthenticated.value, (newIsAuthenticated) => {
 </script>
 
 <template>
-    <div id="app" class="min-h-screen bg-secondary">
-        <div class="flex flex-col" v-if="!isAuthenticated">
+    <div id="app bg-secondary">
+        <div class="flex flex-col min-h-screen" v-if="!isAuthenticated">
             <Header/>
-            <Landing/>
+            <Landing />
             <Footer/>
         </div>
-        <div class="flex flex-col lg:flex-row" v-else>
+        <div class="flex flex-col lg:flex-row min-h-screen" v-else>
             <LeftSidebar class="hidden lg:block"/>
             <Header class="block lg:hidden"/>
-            <div class="lg:w-4/5 rounded-3xl bg-base-100 max-w-full min-h-full lg:min-h-fit m-2 lg:m-5">
+            <div class="lg:w-4/5 rounded-3xl max-w-full min-h-full lg:min-h-fit m-2 lg:m-5">
                 <router-view/>
             </div>
         </div>

@@ -2,7 +2,7 @@
     <div class="mb-4">
         <nav class="p-2 lg:p-4 shadow-md">
             <div class="container mx-auto flex justify-between items-center">
-                <Logo />
+                <Logo :inline="true" />
                 <MobileNavButton @toggle-menu="mobileMenuOpen = !mobileMenuOpen" />
                 <MobileNav :isOpen="mobileMenuOpen" :isAuthenticated="isAuthenticated" :isLoading="isLoading" :user="user" :login="login" :logout="logout"  @closeMenu="mobileMenuOpen = false"/>
                 <Nav :isAuthenticated="isAuthenticated" :isLoading="isLoading" :user="user" :login="login" :logout="logout" />

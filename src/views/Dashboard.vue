@@ -1,12 +1,14 @@
 <script setup lang="ts">
 
-import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import AmountCard from "@/components/cards/AmountCard.vue";
 import DoughnutChart from "@/components/charts/DoughnutChart.vue";
 import {computed, watch} from "vue";
 import {useTransactionsStore} from "@/store/transactions";
 import Loader from "@/components/Loader.vue";
 import {useAuth0} from "@auth0/auth0-vue";
+import MonthlyStats from "@/components/cards/MonthlyStats.vue";
+import CategoryCard from "@/components/cards/CategoryCard.vue";
+import CategoriesList from "@/components/lists/CategoriesList.vue";
 
 
 const monthNames = [
@@ -39,23 +41,30 @@ const solde = computed(() => {
 </script>
 
 <template>
-    <div class="container flex flex-col sm:p-0 p-4 lg:p-10 sm:mx-auto">
-        <div class="flex sm:flex-col justify-between items-center text-primary">
-            <h2 class="text-2xl lg:text-3xl p-5 text-primary font-bold">Dashboard</h2>
+    <div class="container flex flex-col sm:p-0 p-2 lg:p-10 sm:mx-auto">
+        <div class="flex justify-between items-center text-primary">
+            <h2 class="text-2xl lg:text-3xl lg:p-5 text-primary font-bold">Dashboard</h2>
             <div class="flex items-center">
-                <p class="p-5 text-sm lg:text-lg text-center">{{ currentMonth }}</p>
+              <font-awesome-icon icon="calendar-days" class="mr-2 mb-1 text-lg"/>
+                <p class="text-sm lg:text-lg text-center">{{ currentMonth }}</p>
             </div>
         </div>
         <Loader v-if="isFetching"/>
         <div v-else>
-            <div class="amount-card-container flex lg:flex-grow w-full lg:space-x-5 space-x-1 pt-5">
-                <AmountCard label="Entrées" :amount="totalIncome.toFixed(2)"/>
-                <AmountCard label="Sorties" :amount="totalExpense.toFixed(2)"/>
-                <AmountCard label="Solde" :amount="solde"/>
-            </div>
-            <div class="max-w-full">
-                <DoughnutChart :expenses="expenses"/>
-            </div>
+          <div class="lg:p-5">
+           <MonthlyStats :saved-amount="solde" :expenses="totalExpense.toFixed(2)" :income="totalIncome.toFixed(2)" />
+          </div>
+          <CategoriesList :expenses="expenses" />
+
+
+<!--            <div class="amount-card-container flex lg:flex-grow w-full lg:space-x-5 space-x-1 pt-5">-->
+<!--                <AmountCard label="Entrées" :amount="totalIncome.toFixed(2)"/>-->
+<!--                <AmountCard label="Sorties" :amount="totalExpense.toFixed(2)"/>-->
+<!--                <AmountCard label="Solde" :amount="solde"/>-->
+<!--            </div>-->
+<!--            <div class="max-w-full">-->
+<!--                <DoughnutChart :expenses="expenses"/>-->
+<!--            </div>-->
         </div>
     </div>
 

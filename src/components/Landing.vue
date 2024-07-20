@@ -1,11 +1,11 @@
 <template>
-    <div class="flex flex-col justify-center items-center space-y-8 mt-10 p-5 rounded-2xl">
+    <div class="flex flex-grow flex-col justify-center items-center space-y-6 rounded-2xl">
 
-        <p class="text-2xl font-medium text-gray-700">
+        <p class="text-2xl font-medium text-light">
             Votre assistant financier simplifié.
         </p>
 
-        <p class="text-center text-lg leading-relaxed max-w-md text-gray-600">
+        <p class="text-center text-lg leading-relaxed max-w-md text-light">
             Notez vos entrées d'argent et vos dépenses en quelques clics. Meffin vous offre une vue claire de votre
             budget mensuel.
         </p>

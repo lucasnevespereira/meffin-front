@@ -43,6 +43,7 @@ export const useTransactionsStore = defineStore({
 
             try {
                 const response = await updateTransaction(updatedTransaction);
+                console.log("response", response)
                 if (response && response.data) {
                     if (updatedTransaction.type === TransactionType.INCOME) {
                         const index = this.incomes.findIndex(t => t.id === updatedTransaction.id);
@@ -82,8 +83,6 @@ export const useTransactionsStore = defineStore({
         async fetchTransactions(userId: string) {
             this.isFetching = true;
             this.error = null;
-            console.log("fetching transactions")
-
             try {
                 const response = await fetchUserTransactions(userId);
                 if (response && response.data) {

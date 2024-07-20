@@ -13,12 +13,12 @@
   "screenshots": [],
   "icons": [
     {
-      "src": "/logo.png",
+      "src": "/logos/logo-meffin.png",
       "type": "image/png",
       "sizes": "128x128"
     },
     {
-      "src": "/logo.png"
+      "src": "/logos/logo-meffin.png"
     }
   ],
   "shortcuts": [],

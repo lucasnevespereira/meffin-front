@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {useAuth0} from '@auth0/auth0-vue';
+import Logo from "@/components/nav/Logo.vue";
 
 const auth0 = useAuth0();
 const user = auth0.user
@@ -14,12 +15,12 @@ const logout = () => {
 </script>
 
 <template>
-    <div class="w-1/5">
+    <div class="w-1/5 bg-secondary">
         <div class="wrapper flex flex-col min-h-screen sticky z-10 top-0">
             <!-- Logo -->
             <div class="m-5">
                 <router-link to="/">
-                    <img src="/logo.svg" alt="Logo" class="w-16 h-16"/>
+                    <img src="/logos/logo-meffin.svg" alt="Logo" class="h-16 w-16 lg:w-24 lg:h-24 "/>
                 </router-link>
             </div>
 

@@ -11,7 +11,7 @@ import Preferences from "@/views/Preferences.vue";
 
 export function createRouter(app: App): Router {
   return createVueRouter({
-    routes: [
+    routes:  [
       {
         path: "/",
         name: "dashboard",

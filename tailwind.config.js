@@ -12,7 +12,7 @@ module.exports = {
         },
     },
     daisyui: {
-        themes: ["light", "dark", "cupcake", "wireframe",
+        themes: ["light", "dark", "cupcake", "wireframe", "synthwave", "lofi",
             {
                 jenny: {
                     "primary": "#193346",
@@ -25,7 +25,21 @@ module.exports = {
                     "warning": "#f4dd66",
                     "error": "#ec7484",
                 },
-            }],
+            },
+            {
+                modernDark: {
+                    "primary": "#1A1A2E",
+                    "secondary": "#16213E",
+                    "accent": "#0F3460",
+                    "neutral": "#1B262C",
+                    "base-100": "#121212",
+                    "info": "#3282B8",
+                    "success": "#4CAF50",
+                    "warning": "#FF9800",
+                    "error": "#F44336",
+                },
+            },
+        ],
     },
     plugins: [require("@tailwindcss/typography"), require("daisyui")],
 }

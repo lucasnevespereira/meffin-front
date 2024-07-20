@@ -14,6 +14,7 @@ export async function createTransaction(transaction: CreateTransaction) {
 
 export async function updateTransaction(transaction: Transaction) {
     const url = `${baseUrl}/transactions`;
+    console.log("transaction to update", transaction)
     return await axios.put(url, transaction);
 }
 

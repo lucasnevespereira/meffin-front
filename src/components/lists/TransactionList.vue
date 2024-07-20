@@ -9,19 +9,15 @@
                             <span :class="itemColor" class="ml-4 text-sm md:text-base">{{ item.amount }} €</span>
                         </div>
                         <div class="text-sm md:text-base">
-                            <span v-if="item.is_fixed && item.day_of_month > 0"
-                                  class="mr-4 hidden sm:inline text-blue-600">Tous les <b>{{
-                                item.day_of_month
-                                }}</b></span>
-                            <span v-else-if="item.day_of_month > 0" class="hidden sm:inline text-yellow-600">Le <b>{{
-                                item.day_of_month
-                                }} ce mois</b></span>
-                            <span v-else-if="!item.is_fixed && item.endDate.length > 0"
-                                  class="mr-4 hidden sm:inline text-yellow-600">Jusqu'au {{
-                                formatDate(item.endDate)
-                                }}</span>
+                            <span v-if="item.is_fixed && item.day_of_month > 0" class="mr-4 hidden sm:inline text-blue-600">Tous les <b>{{item.day_of_month}}</b></span>
+                            <span v-else-if="item.day_of_month > 0" class="hidden sm:inline text-yellow-600">Le <b>{{item.day_of_month }} ce mois</b></span>
+                            <span v-else-if="!item.is_fixed && item.endDate.length > 0" class="mr-4 hidden sm:inline text-yellow-600">Jusqu'au {{formatDate(item.endDate)}}</span>
+
                             <span v-if="item.is_fixed"
-                                  class="bg-blue-200 text-blue-700 py-1 px-3 rounded-full text-xs uppercase">Fixe</span>
+                                  class="bg-blue-200 text-blue-700 py-1 px-3 rounded-full text-xs uppercase ml-1">Fixe</span>
+                            <span v-else class="bg-yellow-200 text-yellow-700 py-1 px-3 rounded-full text-xs uppercase ml-1">
+                              Temp
+                            </span>
                         </div>
                         <div class="flex items-center ml-4">
                             <button @click="editTransaction(item)" class="btn btn-xs">
@@ -60,7 +56,7 @@ const {items, type} = defineProps<Props>();
 const emit = defineEmits(['removeItem']);
 
 const itemColor = computed(() => {
-    return type === TransactionType.INCOME ? "text-green-500" : "text-red-500";
+    return type === TransactionType.INCOME ? "text-green-700" : "text-red-700";
 });
 
 const editMode = ref(false);
@@ -82,7 +78,7 @@ const cancelEdit = () => {
 
 const updateTransaction = () => {
     if (editedTransaction.value) {
-
+      console.log("edited transaction is_fixed", editedTransaction)
         store.updateTransaction(editedTransaction.value);
 
         // After updating, exit edit mode

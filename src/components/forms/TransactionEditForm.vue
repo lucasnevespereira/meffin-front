@@ -136,6 +136,7 @@ const saveEdit = () => {
         } else if (editedTransaction.category === otherCategory && !editedCustomCategory.value) {
             editedTransaction.category = defaultCategory; // Change to default category if custom category is empty
         }
+        console.log("edited transaction", editedTransaction.is_fixed)
         emit('updateTransaction', editedTransaction);
     }
 }

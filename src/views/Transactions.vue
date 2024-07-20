@@ -81,10 +81,11 @@ export default {
 
 <template>
     <div class="container mx-auto space-y-8 sm:p-0 p-4 lg:p-10 sm:mx-auto">
-        <div class="flex sm:flex-col justify-between items-center text-primary">
+        <div class="flex justify-between items-center text-primary">
             <h2 class="text-3xl p-5 text-primary font-bold">Transactions</h2>
             <div class="flex items-center">
-                <p class="text-sm lg:text-lg  text-center">{{ currentMonth }}</p>
+              <font-awesome-icon icon="calendar-days" class="mr-2 mb-1 text-lg"/>
+              <p class="text-sm lg:text-lg  text-center">{{ currentMonth }}</p>
             </div>
         </div>
         <Loader v-if="isFetching"/>
