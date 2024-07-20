@@ -28,7 +28,6 @@ watch(() => auth0.isAuthenticated.value, (newIsAuthenticated) => {
             <div class="lg:w-4/5 rounded-3xl max-w-full min-h-full lg:min-h-fit m-2 lg:m-5">
                 <router-view/>
             </div>
-          <Footer class="lg:hidden"/>
         </div>
     </div>
 </template>

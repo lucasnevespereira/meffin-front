@@ -50,7 +50,7 @@ const sorted = Object.values(groupedExpenses.value).sort((a, b) => b.total - a.t
 
 <style scoped>
 .scroll-container {
-  max-height: 500px;
+  max-height: 550px;
   overflow-y: auto;
 }
 </style>
