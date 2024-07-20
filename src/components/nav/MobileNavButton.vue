@@ -1,5 +1,5 @@
 <template>
-    <button @click="toggleMenu" class="lg:hidden">
+    <button @click="toggleMenu" class="lg:hidden mr-2">
         <font-awesome-icon icon="bars"/>
     </button>
 </template>

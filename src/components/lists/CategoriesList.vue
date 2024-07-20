@@ -41,8 +41,8 @@ const sorted = Object.values(groupedExpenses.value).sort((a, b) => b.total - a.t
 </script>
 
 <template>
-  <div class="p-1 lg:p-5 scroll-container w-full">
-    <div class="w-full" v-for="(expense, index) in sorted" :key="index">
+  <div class="p-2 lg:p-5 scroll-container w-full">
+    <div class="w-full mt-2 " v-for="(expense, index) in sorted" :key="index">
       <CategoryCard :label="expense.label" :amount="expense.total" :transactions="expense.transactions"/>
     </div>
   </div>

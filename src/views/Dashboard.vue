@@ -7,7 +7,6 @@ import {useTransactionsStore} from "@/store/transactions";
 import Loader from "@/components/Loader.vue";
 import {useAuth0} from "@auth0/auth0-vue";
 import MonthlyStats from "@/components/cards/MonthlyStats.vue";
-import CategoryCard from "@/components/cards/CategoryCard.vue";
 import CategoriesList from "@/components/lists/CategoriesList.vue";
 
 
@@ -55,29 +54,9 @@ const solde = computed(() => {
            <MonthlyStats :saved-amount="solde" :expenses="totalExpense.toFixed(2)" :income="totalIncome.toFixed(2)" />
           </div>
           <CategoriesList :expenses="expenses" />
-
-
-<!--            <div class="amount-card-container flex lg:flex-grow w-full lg:space-x-5 space-x-1 pt-5">-->
-<!--                <AmountCard label="Entrées" :amount="totalIncome.toFixed(2)"/>-->
-<!--                <AmountCard label="Sorties" :amount="totalExpense.toFixed(2)"/>-->
-<!--                <AmountCard label="Solde" :amount="solde"/>-->
-<!--            </div>-->
-<!--            <div class="max-w-full">-->
-<!--                <DoughnutChart :expenses="expenses"/>-->
-<!--            </div>-->
         </div>
     </div>
-
 </template>
 
 <style scoped>
-.amount-card-container {}
-
-@media screen and (max-width: 768px) {
-  .amount-card-container {
-    overflow-x: scroll;
-    display: flex;
-    padding: 0;
-  }
-}
 </style>

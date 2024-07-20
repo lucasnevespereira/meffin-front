@@ -1,9 +1,9 @@
 <template>
-    <div class="container flex flex-col p-10">
-        <div class="flex justify-between items-center text-primary">
+    <div class="container flex flex-1 flex-col p-10">
+        <div class="flex justify-center lg:justify-between items-center text-center text-primary">
             <h2 class="text-3xl p-5 text-primary font-bold">Mon Profil</h2>
         </div>
-        <div class="flex flex-col  md:flex-row items-center mb-10">
+        <div class="flex flex-col md:flex-row items-center mb-10">
             <div class="w-full md:w-1/4 mb-4 md:mb-0">
                 <img
                         :src="user?.picture"

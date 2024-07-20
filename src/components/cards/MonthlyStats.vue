@@ -20,7 +20,7 @@ defineProps({
     <div class="stats shadow">
       <div class="stat">
         <div class="stat-title text-sm lg:text-xl">Solde</div>
-        <div class="stat-value text-primary flex items-center text-xl lg:text-3xl" :class="Number(savedAmount) > 0 ? 'text-green-700': 'text-red-700'">
+        <div class="stat-value flex items-center text-xl lg:text-3xl" :class="Number(savedAmount) > 0 ? 'text-green-700': 'text-red-700'">
           {{ savedAmount }} <font-awesome-icon icon="euro" class="text-xl lg:text-2xl ml-1"/>
         </div>
       </div>
