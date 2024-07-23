@@ -3,15 +3,15 @@ import Profile from "@/views/Profile.vue";
 import Transactions from "@/views/Transactions.vue";
 import { createAuthGuard } from "@auth0/auth0-vue";
 import { App } from 'vue';
-import Home from "@/views/Home.vue";
 import Dashboard from "@/views/Dashboard.vue";
 import Preferences from "@/views/Preferences.vue";
+import Categories from "@/views/Categories.vue";
 
 
 
 export function createRouter(app: App): Router {
   return createVueRouter({
-    routes:  [
+    routes: [
       {
         path: "/",
         name: "dashboard",
@@ -27,6 +27,12 @@ export function createRouter(app: App): Router {
         path: "/preferences",
         name: "preferences",
         component: Preferences,
+        beforeEnter: createAuthGuard(app)
+      },
+      {
+        path: "/categories",
+        name: "categories",
+        component: Categories,
         beforeEnter: createAuthGuard(app)
       },
       {

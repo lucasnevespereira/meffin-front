@@ -20,4 +20,19 @@ interface CreateTransaction {
     category: string;
 }
 
+interface CreateCategory {
+    userId: string;
+    name: string;
+    color: string;
+    type: string;
+}
+
+interface Category {
+    id?: string;
+    userID?: string;
+    name: string;
+    color: string;
+    type: string;
+}
+
 

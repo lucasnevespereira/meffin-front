@@ -1,11 +1,11 @@
-import {defineStore} from "pinia";
+import { defineStore } from "pinia";
 import {
     fetchUserTransactions,
     createTransaction,
     updateTransaction,
     deleteTransaction
 } from "../services/transactionService";
-import {TransactionType} from "@/enum";
+import { TransactionType } from "@/enum";
 
 
 export const useTransactionsStore = defineStore({
@@ -40,10 +40,8 @@ export const useTransactionsStore = defineStore({
         },
         async updateTransaction(updatedTransaction: Transaction) {
             this.isFetching = true;
-
             try {
                 const response = await updateTransaction(updatedTransaction);
-                console.log("response", response)
                 if (response && response.data) {
                     if (updatedTransaction.type === TransactionType.INCOME) {
                         const index = this.incomes.findIndex(t => t.id === updatedTransaction.id);
