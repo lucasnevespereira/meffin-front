@@ -30,3 +30,5 @@ Small application to register monthly transactions (incomes or expenses) and cal
 - Update and Delete transaction
 
 - View month transactions and current balance
+
+- Set your own categories
