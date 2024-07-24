@@ -1,9 +1,5 @@
 # Meffin
 
-**Meffin** is a small application to calculate a monthly budget by saving recurrent or temporary transactions
-
-![](demo.png)
-
 - Frontend with [Vue 3](https://vuejs.org/guide/introduction.html)
 
 - Backend with Golang [meffin-transactions-api](https://github.com/lucasnevespereira/meffin-transactions-api)
@@ -18,6 +14,8 @@
 ## 📍 Overview
 
 Small application to register monthly transactions (incomes or expenses) and calculate balance for current month
+
+![](demo.png)
 
 ---
 
