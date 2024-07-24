@@ -1,4 +1,8 @@
-# Meffin Transactions
+# Meffin
+
+**Meffin** is a small application to calculate a monthly budget by saving recurrent or temporary transactions
+
+![](demo.png)
 
 - Frontend with [Vue 3](https://vuejs.org/guide/introduction.html)
 
