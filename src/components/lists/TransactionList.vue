@@ -9,7 +9,7 @@
                 item.description
               }}</span>
               <span :class="itemColor" class="ml-4 text-sm md:text-base"
-                >{{ item.amount }} €</span
+                >{{ item.amount }} {{ currency }}</span
               >
             </div>
             <div class="text-sm md:text-base">
@@ -72,6 +72,10 @@ import { formatDate } from "@/utils/date";
 import TransactionEditForm from "@/components/forms/TransactionEditForm.vue";
 import { useTransactionsStore } from "@/store/transactions";
 import { TransactionType } from "@/enum";
+
+import { useCurrency } from '@/composables/use-currency';
+
+const { currency } = useCurrency();
 
 const store = useTransactionsStore();
 

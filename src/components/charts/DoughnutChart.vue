@@ -3,8 +3,10 @@
 import {Doughnut} from "vue-chartjs";
 import {Chart as ChartJS, ArcElement, Tooltip, Legend} from 'chart.js'
 import {ref} from "vue";
+import { useCurrency } from '@/composables/use-currency';
 
 ChartJS.register(ArcElement, Tooltip, Legend)
+const { currency } = useCurrency();
 
 const isMobile = ref(window.innerWidth <= 768);
 
@@ -76,7 +78,7 @@ const chartOptions = {
     tooltip: {
       callbacks: {
         label: (context) => {
-          return `${context.parsed.toLocaleString()} €`;
+          return `${context.parsed.toLocaleString()} ${currency}`;
         },
       },
       backgroundColor: "#3D97D9",

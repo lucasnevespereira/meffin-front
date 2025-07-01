@@ -1,7 +1,8 @@
 <script setup lang="ts">
-
-
 import {ref} from "vue";
+import { useCurrency } from '@/composables/use-currency';
+
+const { formatAmount } = useCurrency();
 
 defineProps({
   label: {
@@ -35,14 +36,14 @@ const toggleDetails = () => {
     <div @click="toggleDetails" class="flex flex-row items-center justify-between w-full cursor-pointer">
       <p class="text-md lg:text-xl font-light">{{ label }}</p>
       <div class="flex ">
-        <span class="text-md lg:text-2xl font-bold text-primary">{{ amount }} €</span>
+        <span class="text-md lg:text-2xl font-bold text-primary">{{ formatAmount(amount) }}</span>
       </div>
 
     </div>
     <div v-if="showDetails" class="mt-4 w-full">
       <ul>
         <li class="text-sm text-secondary-200" v-for="transaction in transactions" :key="transaction.id">
-          {{ transaction.description }} - {{ transaction.amount }} €
+          {{ transaction.description }} - {{ formatAmount(transaction.amount) }}
         </li>
       </ul>
     </div>

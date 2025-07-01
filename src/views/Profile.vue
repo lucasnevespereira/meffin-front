@@ -100,22 +100,18 @@ export default {
         const showDeleteModal = ref(false);
         const isLoading = ref(false);
         const errorMsg = ref("");
+        const selectedCurrency = ref<Currency>(userStore.getCurrency());
 
         // Computed properties
         const currentUser = computed(() => userStore.currentUser);
         const currency = computed(() => userStore.getCurrency());
         const isUpdatingCurrency = computed(() => userStore.getIsUpdatingCurrency());
-        const selectedCurrency = computed({
-            get: () => userStore.getCurrency(),
-            set: (value: Currency) => {
-                // This will be handled by the @change event
-            }
-        });
         
+           
         // Watch for changes in currentUser and update selectedCurrency
         watch(currentUser, (newUser) => {
             if (newUser?.currency) {
-                // Currency is now managed by the store, no need to manually update
+                selectedCurrency.value = newUser.currency;
                 console.log('User currency updated in store:', newUser.currency);
             }
         }, { immediate: true });

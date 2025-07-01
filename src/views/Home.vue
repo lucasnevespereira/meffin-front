@@ -74,9 +74,5 @@ export default {
 };
 </script>
 
-<style>
-.toto {
-    //max-height: 80vh;
-    overflow-y: scroll;
-}
+<style scoped>
 </style>

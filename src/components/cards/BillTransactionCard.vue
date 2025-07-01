@@ -29,7 +29,7 @@
                         <span class="font-semibold">{{ category.category }}</span>
                         <span class="text-gray-500">
               <font-awesome-icon :icon="category.expanded ? 'arrow-down' : 'arrow-right'"/>
-              {{ category.totalAmount.toFixed(2) }}€
+              {{ category.totalAmount.toFixed(2) }} {{ currency }}
             </span>
                     </div>
                     <ul
@@ -53,7 +53,7 @@
                                       class="text-sm bg-yellow-100 text-yellow-600 px-2 py-1 rounded">
                                     {{ formatDate(transaction.endDate) }}
                                 </span>
-                                <span :class="amountColor" class="font-bold">{{ transaction.amount }}€</span>
+                                <span :class="amountColor" class="font-bold">{{ transaction.amount }} {{ currency }}</span>
                             </div>
                         </li>
                     </ul>
@@ -81,7 +81,7 @@
                                 v-else-if="item.endDate.length > 0"
                                 class="text-sm bg-yellow-100 text-yellow-600 px-2 py-1 rounded"
                         >{{ formatDate(item.endDate) }}</span>
-                        <span :class="amountColor" class="font-bold">{{ item.amount }}€</span>
+                        <span :class="amountColor" class="font-bold">{{ item.amount }} {{ currency }}</span>
                     </div>
                 </li>
             </ul>
@@ -93,6 +93,9 @@
 import {computed, ref} from 'vue';
 import {formatDate} from '@/utils/date';
 import {defaultCategory, otherCategory} from "@/utils/categories";
+import { useCurrency } from '@/composables/use-currency';
+
+const { currency } = useCurrency();
 
 const props = defineProps({
     title: String,

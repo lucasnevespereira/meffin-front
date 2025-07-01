@@ -8,7 +8,8 @@ export function useCurrency() {
   const currency = computed(() => userStore.getCurrency());
   const isUpdatingCurrency = computed(() => userStore.getIsUpdatingCurrency());
 
-  const getCurrencySymbol = (currencyCode: string) => {
+  const getCurrencySymbol = (currencyCode?: string) => {
+    const code = currencyCode || currency.value;
     const symbols: Record<string, string> = {
       EUR: "€",
       USD: "$",
@@ -18,13 +19,17 @@ export function useCurrency() {
       CHF: "CHF",
       JPY: "¥",
     };
-    return symbols[currencyCode] || currencyCode;
+    return symbols[code] || code;
   };
 
   const formatAmount = (amount: number | string, currencyCode?: string) => {
     const code = currencyCode || currency.value;
     const symbol = getCurrencySymbol(code);
-    return `${amount} ${symbol}`;
+    const numAmount = typeof amount === "string" ? parseFloat(amount) : amount;
+
+    // Format number with proper decimal places
+    const formattedAmount = numAmount.toFixed(2);
+    return `${formattedAmount} ${symbol}`;
   };
 
   const updateCurrency = async (newCurrency: Currency) => {

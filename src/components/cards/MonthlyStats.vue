@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { useCurrency } from "@/composables/use-currency";
+
+const { formatAmount, getCurrencySymbol } = useCurrency();
+
 defineProps({
   savedAmount: {
     type: String,
@@ -21,24 +25,20 @@ defineProps({
       <div class="stat">
         <div class="stat-title text-sm lg:text-xl">Solde</div>
         <div class="stat-value flex items-center text-xl lg:text-3xl" :class="Number(savedAmount) > 0 ? 'text-green-700': 'text-red-700'">
-          {{ savedAmount }} <font-awesome-icon icon="euro" class="text-xl lg:text-2xl ml-1"/>
+          {{ formatAmount(savedAmount) }}
         </div>
       </div>
     </div>
     <div class="stats shadow hidden md:block">
       <div class="stat">
         <div class="stat-title">Entrées</div>
-        <div class="stat-value text-green-700 flex items-center text-xl lg:text-3xl">+ {{ income }}
-          <font-awesome-icon icon="euro" class="text-xl ml-1"/>
-        </div>
+        <div class="stat-value text-green-700 flex items-center text-xl lg:text-3xl">+ {{ formatAmount(income) }}</div>
       </div>
     </div>
     <div class="stats shadow hidden md:block">
       <div class="stat">
         <div class="stat-title">Sorties</div>
-        <div class="stat-value text-red-700 flex items-center text-xl lg:text-3xl">- {{ expenses }}
-          <font-awesome-icon icon="euro" class="text-xl ml-1"/>
-        </div>
+        <div class="stat-value text-red-700 flex items-center text-xl lg:text-3xl">- {{ formatAmount(expenses) }}</div>
       </div>
     </div>
   </div>
