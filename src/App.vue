@@ -19,7 +19,6 @@ watch(() => auth0.isAuthenticated.value, async (newIsAuthenticated) => {
     if (newIsAuthenticated && auth0.user.value) {
         try {
             console.log('User authenticated, syncing with database...');
-            console.log('Auth0 user data:', auth0.user.value);
             // Sync user with database when they authenticate
             await userStore.syncUser(auth0.user.value);
             console.log('User sync completed');
@@ -36,11 +35,10 @@ watch(() => auth0.isAuthenticated.value, async (newIsAuthenticated) => {
 
 // Watch for user profile changes (this is the key fix)
 watch(() => auth0.user.value, async (newUser) => {
-    console.log('User profile changed:', newUser);
+    console.log('User profile changed');
     if (newUser && auth0.isAuthenticated.value && Object.keys(newUser).length > 0) {
         try {
             console.log('User profile loaded, syncing with database...');
-            console.log('Auth0 user data:', newUser);
             await userStore.syncUser(newUser);
             console.log('User sync completed from profile change');
         } catch (error) {
@@ -55,7 +53,6 @@ onMounted(async () => {
     if (auth0.isAuthenticated.value && auth0.user.value && Object.keys(auth0.user.value).length > 0) {
         try {
             console.log('User already authenticated, syncing...');
-            console.log('Auth0 user data:', auth0.user.value);
             await userStore.syncUser(auth0.user.value);
             console.log('Initial sync completed');
         } catch (error) {
