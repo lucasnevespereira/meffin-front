@@ -34,10 +34,25 @@ watch(() => auth0.isAuthenticated.value, async (newIsAuthenticated) => {
     }
 });
 
+// Watch for user profile changes (this is the key fix)
+watch(() => auth0.user.value, async (newUser) => {
+    console.log('User profile changed:', newUser);
+    if (newUser && auth0.isAuthenticated.value && Object.keys(newUser).length > 0) {
+        try {
+            console.log('User profile loaded, syncing with database...');
+            console.log('Auth0 user data:', newUser);
+            await userStore.syncUser(newUser);
+            console.log('User sync completed from profile change');
+        } catch (error) {
+            console.error('Failed to sync user from profile change:', error);
+        }
+    }
+}, { immediate: true });
+
 // Handle initial load when user is already authenticated
 onMounted(async () => {
     console.log('App mounted, checking auth state...');
-    if (auth0.isAuthenticated.value && auth0.user.value) {
+    if (auth0.isAuthenticated.value && auth0.user.value && Object.keys(auth0.user.value).length > 0) {
         try {
             console.log('User already authenticated, syncing...');
             console.log('Auth0 user data:', auth0.user.value);
@@ -47,7 +62,7 @@ onMounted(async () => {
             console.error('Failed to sync user on mount:', error);
         }
     } else {
-        console.log('No user authenticated on mount');
+        console.log('No user authenticated on mount or user profile not loaded');
     }
 });
 </script>
