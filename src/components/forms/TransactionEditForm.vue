@@ -114,7 +114,7 @@
             <option
               v-for="category in categories"
               :key="category.name"
-              :value="category.name"
+              :value="category.id"
             >
               {{ category.name }}
             </option>

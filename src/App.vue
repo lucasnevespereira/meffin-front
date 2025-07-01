@@ -1,18 +1,55 @@
 <script setup lang="ts">
 import Footer from "./components/Footer.vue";
 import {useAuth0} from "@auth0/auth0-vue";
-import {ref, watch} from "vue";
+import {ref, watch, onMounted} from "vue";
 import Landing from "@/components/Landing.vue";
 import Header from "@/components/Header.vue";
 import LeftSidebar from "@/components/nav/LeftSidebar.vue";
-
+import { useUserStore } from "@/store/user";
 
 const auth0 = useAuth0();
+const userStore = useUserStore();
 const isAuthenticated = ref(auth0.isAuthenticated.value);
-watch(() => auth0.isAuthenticated.value, (newIsAuthenticated) => {
+
+// Watch for authentication changes
+watch(() => auth0.isAuthenticated.value, async (newIsAuthenticated) => {
+    console.log('Auth state changed:', newIsAuthenticated);
     isAuthenticated.value = newIsAuthenticated;
+    
+    if (newIsAuthenticated && auth0.user.value) {
+        try {
+            console.log('User authenticated, syncing with database...');
+            console.log('Auth0 user data:', auth0.user.value);
+            // Sync user with database when they authenticate
+            await userStore.syncUser(auth0.user.value);
+            console.log('User sync completed');
+        } catch (error) {
+            console.error('Failed to sync user:', error);
+            // You might want to show an error message to the user here
+        }
+    } else if (!newIsAuthenticated) {
+        console.log('User logged out, clearing user data');
+        // Clear user data when they log out
+        userStore.clearUser();
+    }
 });
 
+// Handle initial load when user is already authenticated
+onMounted(async () => {
+    console.log('App mounted, checking auth state...');
+    if (auth0.isAuthenticated.value && auth0.user.value) {
+        try {
+            console.log('User already authenticated, syncing...');
+            console.log('Auth0 user data:', auth0.user.value);
+            await userStore.syncUser(auth0.user.value);
+            console.log('Initial sync completed');
+        } catch (error) {
+            console.error('Failed to sync user on mount:', error);
+        }
+    } else {
+        console.log('No user authenticated on mount');
+    }
+});
 </script>
 
 <template>
@@ -32,5 +69,3 @@ watch(() => auth0.isAuthenticated.value, (newIsAuthenticated) => {
         </div>
     </div>
 </template>
-
-

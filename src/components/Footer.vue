@@ -5,7 +5,7 @@
         </div>
         <p>
             Meffin by
-            <a href="https://lucasnp.com" class="text-primary-500 hover:underline">lucasnp</a>
+            <a href="https://lucasnp.dev" class="text-primary-500 hover:underline">lucasnp</a>
         </p>
     </footer>
 </template>

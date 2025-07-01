@@ -1,7 +1,4 @@
 <script setup lang="ts">
-
-import AmountCard from "@/components/cards/AmountCard.vue";
-import DoughnutChart from "@/components/charts/DoughnutChart.vue";
 import {computed, watch} from "vue";
 import {useTransactionsStore} from "@/store/transactions";
 import Loader from "@/components/Loader.vue";

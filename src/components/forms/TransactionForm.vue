@@ -111,25 +111,11 @@
             <option
               v-for="category in categories"
               :key="category.name"
-              :value="category.name"
+              :value="category.id"
             >
               {{ category.name }}
             </option>
           </select>
-        </div>
-
-        <div v-if="newItem.category === otherCategory">
-          <label
-            for="customCategory"
-            class="block text-sm font-medium text-gray-700"
-            >Catégorie Personnalisée:</label
-          >
-          <input
-            id="customCategory"
-            v-model="newCustomCategory"
-            placeholder="Enter catégorie personnalisée"
-            class="mt-1 input input-bordered w-full"
-          />
         </div>
       </div>
 

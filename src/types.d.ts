@@ -9,6 +9,12 @@ interface Transaction {
     category: string;
 }
 
+interface GroupedTransaction {
+    transactions: Transaction[];
+    total: number;
+    label: string;
+}
+
 interface CreateTransaction {
     userId: string;
     type: string;
