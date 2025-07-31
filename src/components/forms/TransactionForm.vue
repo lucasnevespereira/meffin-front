@@ -110,8 +110,8 @@
             <option :value="defaultCategory" selected>Aucune</option>
             <option
               v-for="category in categories"
-              :key="category.name"
-              :value="category.id"
+              :key="category.id"
+              :value="category.name"
             >
               {{ category.name }}
             </option>
